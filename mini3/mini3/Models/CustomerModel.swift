@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ContectForm {
+enum ContactForm {
     case instagram
     case whatsapp
     case facebook
@@ -18,5 +18,5 @@ struct CustomerModel: Identifiable {
     var id: UUID = UUID()
     var name: String
     var contact: String
-    var contactForm: ContectForm
+    var contactForm: ContactForm
 }

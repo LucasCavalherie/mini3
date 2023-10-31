@@ -9,7 +9,7 @@ import Foundation
 
 struct OrderItemModel: Identifiable {
     var id: UUID = UUID()
-    var product: ProductModel
+    var productId: UUID
     var quantity: Int
 }
 

@@ -13,14 +13,15 @@ enum OrderStatus {
     case toBeDelivered
     case delivered
     case canceled
-    case concluded
 }
 
 struct OrderModel: Identifiable {
     var id: UUID = UUID()
     var orderName: String
-    var deliveryDate: String
+    var deliveryDate: Date
     var observation: String
     var isPaid: Bool
     var status: OrderStatus
+    var customer: CustomerModel
+    var orderItems: [OrderItemModel]
 }

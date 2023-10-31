@@ -20,6 +20,7 @@
 		73664F272AF035CA00781AE0 /* CustomerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F262AF035CA00781AE0 /* CustomerModel.swift */; };
 		73664F292AF03F2000781AE0 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F282AF03F2000781AE0 /* OrderViewModel.swift */; };
 		73664F2B2AF03F3500781AE0 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F2A2AF03F3500781AE0 /* ProductViewModel.swift */; };
+		737710EF2AF17A4900A80C10 /* OrderItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737710EE2AF17A4900A80C10 /* OrderItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		73664F262AF035CA00781AE0 /* CustomerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerModel.swift; sourceTree = "<group>"; };
 		73664F282AF03F2000781AE0 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		73664F2A2AF03F3500781AE0 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		737710EE2AF17A4900A80C10 /* OrderItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				73664F282AF03F2000781AE0 /* OrderViewModel.swift */,
 				73664F2A2AF03F3500781AE0 /* ProductViewModel.swift */,
+				737710EE2AF17A4900A80C10 /* OrderItemViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				73664F1E2AEC4E7E00781AE0 /* ProductModel.swift in Sources */,
 				73664F292AF03F2000781AE0 /* OrderViewModel.swift in Sources */,
 				73664F272AF035CA00781AE0 /* CustomerModel.swift in Sources */,
+				737710EF2AF17A4900A80C10 /* OrderItemViewModel.swift in Sources */,
 				73664F1A2AEC4DCB00781AE0 /* OrderListCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

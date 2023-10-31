@@ -15,11 +15,15 @@ class ProductViewModel: ObservableObject {
     let sharedUserDefaults = UserDefaults()
     let productKey = "products"
     
-    var products : [ProductModel] = []
-    var currentProduct : ProductModel?
+    @Published var products : [ProductModel] = []
+    @Published var currentProduct : ProductModel?
     
     func sortProducts() {
         products.sort()
+    }
+    
+    func getProductIndex(id: UUID) -> Int? {
+        return products.firstIndex(where: { $0.id == id })
     }
     
     func addProduct(name: String, observation: String?, priceBase: Float, createdAt: Date) {
@@ -28,11 +32,17 @@ class ProductViewModel: ObservableObject {
     }
     
     func editProduct(id: UUID, name: String, observation: String?, priceBase: Float, createdAt: Date) {
-        if let index = products.firstIndex(where: { $0.id == id }) {
+        if let index = getProductIndex(id: id) {
             products[index].name = name
             products[index].observation = observation
             products[index].priceBase = priceBase
             products[index].createdAt = createdAt
+        }
+    }
+    
+    func removeProduct(id: UUID) {
+        if let index = getProductIndex(id: id) {
+            products.remove(at: index)
         }
     }
     
