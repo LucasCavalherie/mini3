@@ -54,5 +54,18 @@ class ProductViewModel: ObservableObject {
         return products
     }
     
+    func getTotalSales(id: UUID) -> Int {
+        if getProduct(id: id) != nil {
+            let orders = OrderViewModel.shared.orders.filter{ order in
+                return order.status == .done && order.orderItems.filter{ orderItem in
+                    return orderItem.productId == id
+                }.count > 0
+            }
+            return orders.count
+        }
+        
+        return 0
+    }
+    
 }
 

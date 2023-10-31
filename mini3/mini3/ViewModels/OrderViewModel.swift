@@ -22,18 +22,19 @@ class OrderViewModel: ObservableObject {
         return orders.firstIndex(where: { $0.id == id })
     }
     
-    func addOrder(orderName: String, deliveryDate: Date, observation: String, isPaid: Bool, customerName: String, customerContact: String, contactForm: ContactForm) {
+    func addOrder(orderName: String, deliveryDate: Date, observation: String, value: Double, isPaid: Bool, customerName: String, customerContact: String, contactForm: ContactForm) {
         var orderItems = OrderItemViewModel.shared.listOrderItem()
         var customerModel = CustomerModel(name: customerContact, contact: customerContact, contactForm: contactForm)
-        orders.append(OrderModel(orderName: orderName, deliveryDate: deliveryDate, observation: observation, isPaid: isPaid, status: .toDo, customer: customerModel, orderItems: orderItems))
+        orders.append(OrderModel(orderName: orderName, deliveryDate: deliveryDate, observation: observation, value: value, isPaid: isPaid, status: .toDo, customer: customerModel, orderItems: orderItems))
     }
     
-    func editOrder(id: UUID, orderName: String, deliveryDate: Date, observation: String, isPaid: Bool, customerName: String, customerContact: String, contactForm: ContactForm) {
+    func editOrder(id: UUID, orderName: String, deliveryDate: Date, observation: String, value: Double, isPaid: Bool, customerName: String, customerContact: String, contactForm: ContactForm) {
         var orderItems = OrderItemViewModel.shared.listOrderItem()
         if let index = getOrderIndex(id: id) {
             orders[index].orderName = orderName
             orders[index].deliveryDate = deliveryDate
             orders[index].observation = observation
+            orders[index].value = value
             orders[index].isPaid = isPaid
             orders[index].orderItems = orderItems
             orders[index].customer.name = customerName
@@ -50,10 +51,12 @@ class OrderViewModel: ObservableObject {
     
     func previousStatus(id: UUID, currentStatus: OrderStatus) {
         switch currentStatus {
+            case .done:
+                changeStatus(id: id, status: .packing)
+            case .packing:
+                changeStatus(id: id, status: .doing)
             case .doing:
-                changeStatus(id: id, status: .toBeDelivered)
-            case .toBeDelivered:
-                changeStatus(id: id, status: .delivered)
+                changeStatus(id: id, status: .toDo)
             default:
                 break
         }
@@ -64,9 +67,9 @@ class OrderViewModel: ObservableObject {
             case .toDo:
                 changeStatus(id: id, status: .doing)
             case .doing:
-                changeStatus(id: id, status: .toBeDelivered)
-            case .toBeDelivered:
-                changeStatus(id: id, status: .delivered)
+                changeStatus(id: id, status: .packing)
+            case .packing:
+                changeStatus(id: id, status: .done)
             default:
                 break
         }
@@ -94,13 +97,19 @@ class OrderViewModel: ObservableObject {
     
     func listNotFinishedOrders() -> [OrderModel] {
         return orders.filter { order in
-            return order.status == .toDo || order.status == .doing || order.status == .toBeDelivered
+            return order.status == .toDo || order.status == .doing || order.status == .done
         }
     }
     
     func listFinishedOrders() -> [OrderModel] {
         return orders.filter { order in
-            return order.status == .delivered || order.status == .canceled
+            return order.status == .done || order.status == .canceled
+        }
+    }
+    
+    func listOrdersByStatus(status: OrderStatus) -> [OrderModel] {
+        return orders.filter { order in
+            return order.status == status
         }
     }
     

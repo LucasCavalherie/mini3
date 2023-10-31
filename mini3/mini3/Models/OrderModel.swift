@@ -10,8 +10,8 @@ import Foundation
 enum OrderStatus {
     case toDo
     case doing
-    case toBeDelivered
-    case delivered
+    case packing
+    case done
     case canceled
 }
 
@@ -20,6 +20,7 @@ struct OrderModel: Identifiable {
     var orderName: String
     var deliveryDate: Date
     var observation: String
+    var value: Double
     var isPaid: Bool
     var status: OrderStatus
     var customer: CustomerModel
