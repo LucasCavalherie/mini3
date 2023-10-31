@@ -7,10 +7,15 @@
 
 import Foundation
 
-struct ProductModel: Identifiable {
+struct ProductModel: Identifiable, Comparable {
     var id: UUID = UUID()
     var name: String
-    var observation: String
+    var observation: String?
     var priceBase: Float
+    var createdAt: Date
+    
+    static func < (lhs: ProductModel, rhs: ProductModel) -> Bool {
+        return lhs.name < rhs.name
+    }
 }
 
