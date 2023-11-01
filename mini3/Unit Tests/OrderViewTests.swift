@@ -9,29 +9,96 @@ import XCTest
 @testable import mini3
 
 final class OrderViewTests: XCTestCase {
-    var sut: OrderViewModel?
-    
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    var viewModel: OrderViewModel?
 
     override func tearDownWithError() throws {
-        sut = nil
+        viewModel = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testOrderViewModel_WhenListAllOrder_ReturnTwoOrder() throws {
+        viewModel = OrderViewModel.shared
+        viewModel!.orders = [
+            OrderModel(
+                orderName: "Pedido 1",
+                deliveryDate: Date(),
+                observation: "observação",
+                value: 10.0,
+                isPaid: true,
+                status: .toDo,
+                customer: CustomerModel(name: "nome", contact: "contato", contactForm: .instagram),
+                orderItems: []
+            ),
+            OrderModel(
+                orderName: "Pedido 2",
+                deliveryDate: Date(),
+                observation: "observação",
+                value: 10.0,
+                isPaid: true,
+                status: .toDo,
+                customer: CustomerModel(name: "nome", contact: "contato", contactForm: .instagram),
+                orderItems: []
+            )
+        ]
+        
+        
+        let orders = viewModel!.listAllOrders()
+        
+        XCTAssertEqual(2, orders.count)
+        XCTAssertEqual("Pedido 1", orders[0].orderName)
+        XCTAssertEqual("Pedido 2", orders[1].orderName)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testOrderViewModel_WhenListFinishOrders_ReturnOnlyCanceledOrDelivered() throws {
+        viewModel = OrderViewModel.shared
+        viewModel!.orders = [
+            OrderModel(
+                orderName: "Pedido 1",
+                deliveryDate: Date(),
+                observation: "observação",
+                value: 10.0,
+                isPaid: true,
+                status: .toDo,
+                customer: CustomerModel(name: "nome", contact: "contato", contactForm: .instagram),
+                orderItems: []
+            ),
+            OrderModel(
+                orderName: "Pedido 2",
+                deliveryDate: Date(),
+                observation: "observação",
+                value: 10.0,
+                isPaid: true,
+                status: .doing,
+                customer: CustomerModel(name: "nome", contact: "contato", contactForm: .instagram),
+                orderItems: []
+            ),
+            OrderModel(
+                orderName: "Pedido 3",
+                deliveryDate: Date(),
+                observation: "observação",
+                value: 10.0,
+                isPaid: true,
+                status: .done,
+                customer: CustomerModel(name: "nome", contact: "contato", contactForm: .instagram),
+                orderItems: []
+            ),
+            OrderModel(
+                orderName: "Pedido 4",
+                deliveryDate: Date(),
+                observation: "observação",
+                value: 10.0,
+                isPaid: true,
+                status: .canceled,
+                customer: CustomerModel(name: "nome", contact: "contato", contactForm: .instagram),
+                orderItems: []
+            )
+        ]
+        
+        
+        let orders = viewModel!.listFinishedOrders()
+        
+        XCTAssertEqual(2, orders.count)
+        XCTAssertEqual("Pedido 3", orders[0].orderName)
+        XCTAssertEqual("Pedido 4", orders[1].orderName)
     }
 
 }
