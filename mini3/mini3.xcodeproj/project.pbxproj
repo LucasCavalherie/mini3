@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73045DDE2AF2BD6A00ABA07D /* OrderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73045DDD2AF2BD6A00ABA07D /* OrderViewTests.swift */; };
 		73664F062AEC31FB00781AE0 /* mini3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F052AEC31FB00781AE0 /* mini3App.swift */; };
 		73664F082AEC31FB00781AE0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F072AEC31FB00781AE0 /* ContentView.swift */; };
 		73664F0A2AEC31FC00781AE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73664F092AEC31FC00781AE0 /* Assets.xcassets */; };
@@ -23,7 +24,19 @@
 		737710EF2AF17A4900A80C10 /* OrderItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737710EE2AF17A4900A80C10 /* OrderItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		73045DDF2AF2BD6A00ABA07D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73664EFA2AEC31FB00781AE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73664F012AEC31FB00781AE0;
+			remoteInfo = mini3;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		73045DDB2AF2BD6A00ABA07D /* mini3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mini3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73045DDD2AF2BD6A00ABA07D /* OrderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewTests.swift; sourceTree = "<group>"; };
 		73664F022AEC31FB00781AE0 /* mini3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mini3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73664F052AEC31FB00781AE0 /* mini3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mini3App.swift; sourceTree = "<group>"; };
 		73664F072AEC31FB00781AE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +55,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		73045DD82AF2BD6A00ABA07D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		73664EFF2AEC31FB00781AE0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -52,10 +72,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73045DDC2AF2BD6A00ABA07D /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				73045DDD2AF2BD6A00ABA07D /* OrderViewTests.swift */,
+			);
+			path = "Unit Tests";
+			sourceTree = "<group>";
+		};
 		73664EF92AEC31FB00781AE0 = {
 			isa = PBXGroup;
 			children = (
 				73664F042AEC31FB00781AE0 /* mini3 */,
+				73045DDC2AF2BD6A00ABA07D /* Unit Tests */,
 				73664F032AEC31FB00781AE0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				73664F022AEC31FB00781AE0 /* mini3.app */,
+				73045DDB2AF2BD6A00ABA07D /* mini3Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +170,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		73045DDA2AF2BD6A00ABA07D /* mini3Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73045DE32AF2BD6A00ABA07D /* Build configuration list for PBXNativeTarget "mini3Tests" */;
+			buildPhases = (
+				73045DD72AF2BD6A00ABA07D /* Sources */,
+				73045DD82AF2BD6A00ABA07D /* Frameworks */,
+				73045DD92AF2BD6A00ABA07D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73045DE02AF2BD6A00ABA07D /* PBXTargetDependency */,
+			);
+			name = mini3Tests;
+			productName = mini3Tests;
+			productReference = 73045DDB2AF2BD6A00ABA07D /* mini3Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		73664F012AEC31FB00781AE0 /* mini3 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73664F102AEC31FC00781AE0 /* Build configuration list for PBXNativeTarget "mini3" */;
@@ -167,6 +215,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					73045DDA2AF2BD6A00ABA07D = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 73664F012AEC31FB00781AE0;
+					};
 					73664F012AEC31FB00781AE0 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
@@ -186,11 +238,19 @@
 			projectRoot = "";
 			targets = (
 				73664F012AEC31FB00781AE0 /* mini3 */,
+				73045DDA2AF2BD6A00ABA07D /* mini3Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		73045DD92AF2BD6A00ABA07D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		73664F002AEC31FB00781AE0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -203,6 +263,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		73045DD72AF2BD6A00ABA07D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73045DDE2AF2BD6A00ABA07D /* OrderViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		73664EFE2AEC31FB00781AE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -224,7 +292,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		73045DE02AF2BD6A00ABA07D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73664F012AEC31FB00781AE0 /* mini3 */;
+			targetProxy = 73045DDF2AF2BD6A00ABA07D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		73045DE12AF2BD6A00ABA07D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4X6L65DYQU;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = appledeveloperacademy.mini3Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mini3.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/mini3";
+			};
+			name = Debug;
+		};
+		73045DE22AF2BD6A00ABA07D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4X6L65DYQU;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = appledeveloperacademy.mini3Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mini3.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/mini3";
+			};
+			name = Release;
+		};
 		73664F0E2AEC31FC00781AE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -405,6 +517,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		73045DE32AF2BD6A00ABA07D /* Build configuration list for PBXNativeTarget "mini3Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73045DE12AF2BD6A00ABA07D /* Debug */,
+				73045DE22AF2BD6A00ABA07D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		73664EFD2AEC31FB00781AE0 /* Build configuration list for PBXProject "mini3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
