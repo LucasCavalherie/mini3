@@ -49,8 +49,9 @@ class OrderViewModel: ObservableObject {
         }
     }
     
-    func previousStatus(id: UUID, currentStatus: OrderStatus) {
-        switch currentStatus {
+    func previousStatus() {
+        let id = currentOrder!.id
+        switch currentOrder!.status {
             case .done:
                 changeStatus(id: id, status: .packing)
             case .packing:
@@ -62,8 +63,9 @@ class OrderViewModel: ObservableObject {
         }
     }
     
-    func nextStatus(id: UUID, currentStatus: OrderStatus) {
-        switch currentStatus {
+    func nextStatus() {
+        let id = currentOrder!.id
+        switch currentOrder!.status {
             case .toDo:
                 changeStatus(id: id, status: .doing)
             case .doing:
@@ -77,6 +79,7 @@ class OrderViewModel: ObservableObject {
     
     func changeStatus(id: UUID, status: OrderStatus) {
         if let index = getOrderIndex(id: id) {
+            currentOrder!.status = status
             orders[index].status = status
         }
     }
@@ -97,7 +100,7 @@ class OrderViewModel: ObservableObject {
     
     func listNotFinishedOrders() -> [OrderModel] {
         return orders.filter { order in
-            return order.status == .toDo || order.status == .doing || order.status == .done
+            return order.status == .toDo || order.status == .doing || order.status == .packing || order.status == .toDeliver
         }
     }
     

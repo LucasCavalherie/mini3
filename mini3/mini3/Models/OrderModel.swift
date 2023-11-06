@@ -12,6 +12,7 @@ enum OrderStatus {
     case doing
     case packing
     case done
+    case toDeliver
     case canceled
 }
 
