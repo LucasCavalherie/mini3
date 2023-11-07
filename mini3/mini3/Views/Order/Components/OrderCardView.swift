@@ -32,7 +32,7 @@ struct OrderCardView: View {
                         Text("Qua, 13 OUT")
                         Text("|")
                         Image(systemName: "clock")
-                        Text("14:00")
+                        Text("14:02")
                     }
                     .font(.caption)
                     .fontWeight(.semibold)
