@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		73045DDE2AF2BD6A00ABA07D /* OrderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73045DDD2AF2BD6A00ABA07D /* OrderViewTests.swift */; };
+		73046E232AF956DA0035D54C /* OrderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73046E222AF956DA0035D54C /* OrderExtension.swift */; };
 		73664F062AEC31FB00781AE0 /* mini3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F052AEC31FB00781AE0 /* mini3App.swift */; };
 		73664F082AEC31FB00781AE0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F072AEC31FB00781AE0 /* ContentView.swift */; };
 		73664F0A2AEC31FC00781AE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73664F092AEC31FC00781AE0 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		73045DDB2AF2BD6A00ABA07D /* mini3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mini3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73045DDD2AF2BD6A00ABA07D /* OrderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewTests.swift; sourceTree = "<group>"; };
+		73046E222AF956DA0035D54C /* OrderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderExtension.swift; sourceTree = "<group>"; };
 		73664F022AEC31FB00781AE0 /* mini3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mini3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73664F052AEC31FB00781AE0 /* mini3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mini3App.swift; sourceTree = "<group>"; };
 		73664F072AEC31FB00781AE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,9 +77,18 @@
 		73045DDC2AF2BD6A00ABA07D /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				73046E212AF956AD0035D54C /* Factories */,
 				73045DDD2AF2BD6A00ABA07D /* OrderViewTests.swift */,
 			);
 			path = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		73046E212AF956AD0035D54C /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				73046E222AF956DA0035D54C /* OrderExtension.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		73664EF92AEC31FB00781AE0 = {
@@ -282,6 +293,7 @@
 				73664F1C2AEC4E1800781AE0 /* OrderModel.swift in Sources */,
 				73664F182AEC4DB900781AE0 /* OrderListView.swift in Sources */,
 				73664F2B2AF03F3500781AE0 /* ProductViewModel.swift in Sources */,
+				73046E232AF956DA0035D54C /* OrderExtension.swift in Sources */,
 				73664F1E2AEC4E7E00781AE0 /* ProductModel.swift in Sources */,
 				73664F292AF03F2000781AE0 /* OrderViewModel.swift in Sources */,
 				73664F272AF035CA00781AE0 /* CustomerModel.swift in Sources */,
