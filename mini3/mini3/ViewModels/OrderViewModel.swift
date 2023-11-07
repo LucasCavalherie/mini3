@@ -13,7 +13,7 @@ class OrderViewModel: ObservableObject {
     private init() {}
     
     let sharedUserDefaults = UserDefaults()
-    let orderKey = "order"
+    let orderKey = "orders"
     
     @Published var orders : [OrderModel] = []
     @Published var currentOrder : OrderModel?
