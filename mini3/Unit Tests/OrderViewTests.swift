@@ -11,11 +11,6 @@ import XCTest
 final class OrderViewTests: XCTestCase {
     var viewModel: OrderViewModel?
     
-//    override init() {
-//        super.init()
-//        self.viewModel = OrderViewModel.shared
-//    }
-    
     override func setUp() {
         viewModel = OrderViewModel.shared
     }
@@ -25,19 +20,20 @@ final class OrderViewTests: XCTestCase {
     }
 
     func testOrderViewModel_WhenListAllOrder_ReturnTwoOrder() throws {
-        viewModel!.orders = [
+        let vm = try XCTUnwrap(viewModel)
+        vm.orders = [
             .create(orderName: "Pedido 1"),
             .create(orderName: "Pedido 2"),
         ]
         
-        let orders = viewModel!.listAllOrders()
+        let orders = vm.listAllOrders()
         
         XCTAssertEqual(2, orders.count)
         XCTAssertEqual("Pedido 1", orders[0].orderName)
         XCTAssertEqual("Pedido 2", orders[1].orderName)
     }
     
-    func testOrderViewModel_WhenListFinishOrders_ReturnOnlyCanceledOrDelivered() throws {
+    func testOrderViewModel_WhenListFinishOrders_ReturnOnlyCanceledOrDone() throws {
         viewModel!.orders = [
             .create(orderName: "Pedido 1", status: .toDo),
             .create(orderName: "Pedido 2", status: .doing),
@@ -55,7 +51,7 @@ final class OrderViewTests: XCTestCase {
         XCTAssertEqual("Pedido 6", orders[1].orderName)
     }
     
-    func testOrderViewModel_WhenListNotFinishOrders_NotReturnCanceledOrDelivered() throws {
+    func testOrderViewModel_WhenListNotFinishOrders_NotReturnCanceledOrDone() throws {
         viewModel!.orders = [
             .create(orderName: "Pedido 1", status: .toDo),
             .create(orderName: "Pedido 2", status: .doing),
@@ -193,6 +189,117 @@ final class OrderViewTests: XCTestCase {
         var order = viewModel!.currentOrder!
         XCTAssertEqual("Pedido 1", order.orderName)
         XCTAssertEqual(.doing, order.status)
+    }
+    
+    func testOrderViewModel_WhenPreviousStatus_ShouldChangeToDoingToDo() throws {
+        var listOrders : [OrderModel] = [
+            .create(orderName: "Pedido 1", status: .doing),
+            .create(orderName: "Pedido 2", status: .canceled),
+        ]
+        
+        viewModel!.orders = listOrders
+        viewModel!.currentOrder = listOrders[0]
+        viewModel!.previousStatus()
+        
+        var order = viewModel!.currentOrder!
+        XCTAssertEqual("Pedido 1", order.orderName)
+        XCTAssertEqual(.toDo, order.status)
+    }
+    
+    func testOrderViewModel_WhenRemoveOrder_ShouldRemoveToList() throws {
+        var listOrders : [OrderModel] = [
+            .create(orderName: "Pedido 1"),
+            .create(orderName: "Pedido 2"),
+        ]
+        
+        viewModel!.orders = listOrders
+        viewModel!.removeOrder(id: listOrders[0].id)
+        
+        var orders = viewModel!.orders
+        XCTAssertEqual(1, orders.count)
+        XCTAssertEqual("Pedido 2", orders[0].orderName)
+    }
+    
+    func testOrderViewModel_WhenEditOrder_ShouldChangeOrder() throws {
+        var listOrders : [OrderModel] = [
+            .create(
+                orderName: "Pedido 1",
+                deliveryDate: Date.now,
+                observation: "Obs",
+                value: 10,
+                isPaid: true,
+                status: .toDo,
+                customer: CustomerModel(name: "Lucas", contact: "contact", contactForm: .instagram),
+                orderItems: []
+            ),
+            .create(orderName: "Pedido 2"),
+        ]
+        
+        let date = Date.now.addingTimeInterval(600)
+        viewModel!.orders = listOrders
+        viewModel!.editOrder(
+            id: listOrders[0].id,
+            orderName: "Pedido 2",
+            deliveryDate: date,
+            observation: "obs2",
+            value: 11,
+            isPaid: false,
+            customerName: "luquinhas",
+            customerContact: "contatinho",
+            contactForm: .whatsapp
+        )
+        
+        var order = viewModel!.orders[0]
+        XCTAssertEqual("Pedido 2", order.orderName)
+        XCTAssertEqual(date, order.deliveryDate)
+        XCTAssertEqual("obs2", order.observation)
+        XCTAssertEqual(11, order.value)
+        XCTAssertEqual(false, order.isPaid)
+        XCTAssertEqual("luquinhas", order.customer.name)
+        XCTAssertEqual("contatinho", order.customer.contact)
+        XCTAssertEqual(.whatsapp, order.customer.contactForm)
+    }
+    
+    func testOrderViewModel_WhenAddOrder_ShouldAddOrder() throws {
+        var listOrders : [OrderModel] = [
+            .create(orderName: "Pedido 1"),
+        ]
+        
+        let date = Date.now.addingTimeInterval(600)
+        viewModel!.orders = listOrders
+        viewModel!.addOrder(
+            orderName: "Pedido 2",
+            deliveryDate: date,
+            observation: "obs2",
+            value: 11,
+            isPaid: false,
+            customerName: "luquinhas",
+            customerContact: "contatinho",
+            contactForm: .whatsapp
+        )
+        
+        XCTAssertEqual(2, viewModel!.orders.count)
+        var order = viewModel!.orders[1]
+        XCTAssertEqual("Pedido 2", order.orderName)
+        XCTAssertEqual(date, order.deliveryDate)
+        XCTAssertEqual("obs2", order.observation)
+        XCTAssertEqual(11, order.value)
+        XCTAssertEqual(false, order.isPaid)
+        XCTAssertEqual("luquinhas", order.customer.name)
+        XCTAssertEqual("contatinho", order.customer.contact)
+        XCTAssertEqual(.whatsapp, order.customer.contactForm)
+    }
+    
+    func testOrderViewModel_WhenGetOrderIndex_ShouldGetIndex() throws {
+        var listOrders : [OrderModel] = [
+            .create(orderName: "Pedido 1"),
+            .create(orderName: "Pedido 2"),
+        ]
+        
+        viewModel!.orders = listOrders
+        let index = viewModel!.getOrderIndex(id: listOrders[0].id)
+        
+        XCTAssertEqual(0, index)
     }
 
 }

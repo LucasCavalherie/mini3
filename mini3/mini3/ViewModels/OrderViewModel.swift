@@ -24,7 +24,7 @@ class OrderViewModel: ObservableObject {
     
     func addOrder(orderName: String, deliveryDate: Date, observation: String, value: Double, isPaid: Bool, customerName: String, customerContact: String, contactForm: ContactForm) {
         let orderItems = OrderItemViewModel.shared.listOrderItem()
-        let customerModel = CustomerModel(name: customerContact, contact: customerContact, contactForm: contactForm)
+        let customerModel = CustomerModel(name: customerName, contact: customerContact, contactForm: contactForm)
         orders.append(OrderModel(orderName: orderName, deliveryDate: deliveryDate, observation: observation, value: value, isPaid: isPaid, status: .toDo, customer: customerModel, orderItems: orderItems))
     }
     
