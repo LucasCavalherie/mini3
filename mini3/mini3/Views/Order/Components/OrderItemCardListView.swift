@@ -7,9 +7,46 @@
 
 import SwiftUI
 
+struct iOSCheckboxToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button(action: {
+            configuration.isOn.toggle()
+        }, label: {
+            HStack {
+                Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
+                    .foregroundStyle(.pink)
+                configuration.label
+            }
+        })
+    }
+}
+
 struct OrderItemCardListView: View {
+    @State private var isOn = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            VStack {
+                Text("50")
+                    .fontWeight(.bold)
+                Text("un.")
+                    .font(.caption2)
+            }
+            .foregroundStyle(.background)
+            .padding()
+            .background(.pink)
+            
+            Text("Truco truco truco!!!")
+            
+            Spacer()
+            
+            Toggle(isOn: $isOn){}
+                .toggleStyle(iOSCheckboxToggleStyle())
+        }
+        .padding(.trailing)
+        .background(.tertiary)
+        .cornerRadius(8)
+        .padding(.horizontal)
     }
 }
 

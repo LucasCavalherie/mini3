@@ -10,13 +10,17 @@ import SwiftUI
 
 struct OrderListView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                NavigationLink {
+                    OrderView()
+                } label: {
+                    Text("Ver pedido")
+                }
+                
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
