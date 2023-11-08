@@ -10,13 +10,39 @@ import SwiftUI
 struct OrderCardView: View {
     var body: some View {
         
-        VStack {
-            HStack {
+        VStack(alignment: .center) {
+            Spacer()
+            HStack(alignment: .center, spacing: 16) {
+                ZStack {
+                    
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(Color.red)
+                        .frame(width: 84, height: 84)
+                        .overlay(
+                            VStack {
+                                UnevenRoundedRectangle(topLeadingRadius: 8, topTrailingRadius: 8)
+                                    .background()
+                                    .frame(height: 20)
+                                Spacer()
+                            }
+                        )
+                    VStack {
+                        Text("QUA")
+                            .font(.footnote)
+                            .bold()
+                        
+                        Text("30")
+                            .font(.custom("Ginormous", size: 36))
+                            .fontWeight(.black)
+                            .padding(.top, 0)
+                           
+                        Text("20:00")
+                            .font(.footnote)
+                        
+                    }
+                }
+
                 
-                Image("cook")
-                    .resizable()
-                    .scaledToFit()
-                    .padding(.horizontal, 8)
                 
                 VStack (alignment: .leading) {
                     Text("Aniversário Nicole")
@@ -24,33 +50,56 @@ struct OrderCardView: View {
                     
                     Text("50 un. brigadeiro, 50 un. beijinho, 1kg bolo de chocolate")
                         .font(.caption2)
+                        .frame(maxWidth: 200)
                     
-                    Spacer()
+
                     
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text("Qua, 13 OUT")
-                        Text("|")
-                        Image(systemName: "clock")
-                        Text("14:02")
+                    HStack(spacing: 0) {
+                        ZStack {
+                                VStack {
+                                    GeometryReader { geometry in
+                                    Text("Embalando")
+                                        .padding(.horizontal, 12)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 16)
+                                                .stroke(.red, lineWidth: 2)
+                                        )
+                                        .frame(width: geometry.size.width, height: 28, alignment: .leading)
+                                }
+                                
+                            }
+                        }
+
+                        .font(.footnote)
+                        .fontWeight(.semibold)
+                        
+                        Spacer()
+                            .frame(maxWidth: .infinity)
                     }
-                    .font(.caption)
-                    .fontWeight(.semibold)
                 }
-                .padding(.vertical, 8)
-                .padding(.trailing)
                 
+          
             }
-            .padding(.top, 8)
+            .frame(alignment: .center)
+
+            .padding(12)
             
-            Color.brown
-                .frame(height: 8) // Altura da borda
+            Spacer()
             
         }
-        .frame(height: 125)
+        .frame(maxWidth: .infinity, maxHeight: 104)
         .background(.thickMaterial)
         .cornerRadius(8)
-        .padding()
+        .overlay(
+            HStack {
+                Spacer()
+                UnevenRoundedRectangle(bottomTrailingRadius: 8, topTrailingRadius: 8)
+                    .foregroundStyle(.red) //cor aqui
+                    .frame(width: 8)
+
+            }
+        )
+//        .padding(32)
         
         
     }
