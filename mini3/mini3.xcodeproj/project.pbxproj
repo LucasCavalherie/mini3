@@ -22,6 +22,7 @@
 		73643DF22AFAB6BE00207821 /* OrderCreateEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73643DF12AFAB6BE00207821 /* OrderCreateEditView.swift */; };
 		73643DF62AFAB7A500207821 /* CloseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73643DF52AFAB7A500207821 /* CloseButtonView.swift */; };
 		73643DF82AFAB7B300207821 /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73643DF72AFAB7B300207821 /* AddButtonView.swift */; };
+		73643DFA2AFABF1800207821 /* OrderListDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73643DF92AFABF1800207821 /* OrderListDoneView.swift */; };
 		73664F062AEC31FB00781AE0 /* mini3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F052AEC31FB00781AE0 /* mini3App.swift */; };
 		73664F082AEC31FB00781AE0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F072AEC31FB00781AE0 /* MainView.swift */; };
 		73664F0A2AEC31FC00781AE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73664F092AEC31FC00781AE0 /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 		73643DF12AFAB6BE00207821 /* OrderCreateEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCreateEditView.swift; sourceTree = "<group>"; };
 		73643DF52AFAB7A500207821 /* CloseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonView.swift; sourceTree = "<group>"; };
 		73643DF72AFAB7B300207821 /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
+		73643DF92AFABF1800207821 /* OrderListDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListDoneView.swift; sourceTree = "<group>"; };
 		73664F022AEC31FB00781AE0 /* mini3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mini3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73664F052AEC31FB00781AE0 /* mini3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mini3App.swift; sourceTree = "<group>"; };
 		73664F072AEC31FB00781AE0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				73664F172AEC4DB900781AE0 /* OrderListView.swift */,
 				73643DEF2AFAB69500207821 /* OrderView.swift */,
 				73643DF12AFAB6BE00207821 /* OrderCreateEditView.swift */,
+				73643DF92AFABF1800207821 /* OrderListDoneView.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				73643DEC2AFAB4D600207821 /* OrderItemCardAddView.swift in Sources */,
 				73046E232AF956DA0035D54C /* OrderExtension.swift in Sources */,
 				73643DE62AFAB31800207821 /* OrderStatusListView.swift in Sources */,
+				73643DFA2AFABF1800207821 /* OrderListDoneView.swift in Sources */,
 				73664F1E2AEC4E7E00781AE0 /* ProductModel.swift in Sources */,
 				73643DDF2AFAB1AB00207821 /* ProductView.swift in Sources */,
 				73664F292AF03F2000781AE0 /* OrderViewModel.swift in Sources */,
