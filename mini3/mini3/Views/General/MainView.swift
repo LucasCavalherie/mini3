@@ -16,7 +16,7 @@ struct MainView: View {
                         Label("Agenda", systemImage: "calendar")
                     }
                 
-                ProductView()
+                ProductListView()
                     .tabItem {
                         Label("Produtos", systemImage: "birthday.cake")
                     }
@@ -27,7 +27,7 @@ struct MainView: View {
                     }
             }
         }
-        .tint(Color("geleiaDeMorango"))
+        .tint(.picoleDeGroselha)
         .onAppear {
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithDefaultBackground()
