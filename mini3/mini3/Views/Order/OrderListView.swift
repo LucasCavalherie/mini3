@@ -16,6 +16,7 @@ struct OrderListView: View {
                     ZStack {
                         Image("Cremosinho_Tab")
                             .resizable()
+                            .scaledToFit()
                         
                         HStack(alignment: .top) {
                             Image("LogoPave")

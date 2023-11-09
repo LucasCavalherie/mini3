@@ -9,10 +9,13 @@ import SwiftUI
 
 struct AddButtonView: View {
     var body: some View {
-        Image(systemName: "plus.app.fill")
-            .font(.title)
+        Image(systemName: "plus")
+            .foregroundColor(.white)
+            .font(.callout)
             .fontWeight(.bold)
-            .foregroundStyle(Color("amareloGema"))
+            .padding(8)
+            .background(.amareloGema)
+            .cornerRadius(8)
     }
 }
 

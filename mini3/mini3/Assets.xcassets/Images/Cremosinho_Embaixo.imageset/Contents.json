@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Sacola.svg",
+      "filename" : "Cremosinho_Embaixo.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Sacola 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Sacola 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
