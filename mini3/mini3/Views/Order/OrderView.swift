@@ -8,42 +8,57 @@
 import SwiftUI
 
 struct OrderView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         ScrollView {
              VStack  {
+                 ZStack {
+                     Image("Cremosinho_Detalhe")
+                         .resizable()
+                     
+                     VStack {
+                         OrderStatusListView()
+                             .padding(.vertical)
+                         
+                         HStack {
+                             Text("Embalando")
+                                 .foregroundStyle(Color.secundaria)
+                                 .font(.title3)
+                                 .fontWeight(.bold)
+                             
+                             Spacer()
+                             
+                             Button {
+                                 
+                             } label: {
+                                 Image(systemName: "arrow.uturn.backward")
+                                     .foregroundStyle(.background)
+                                     .fontWeight(.bold)
+                                     .padding()
+                                     .background(Color.picoleDeGroselha)
+                                     .cornerRadius(12)
+                             }
+                             
+                             Button {
+                                 
+                             } label: {
+                                 Text("Avançar")
+                                     .foregroundStyle(.background)
+                                     .fontWeight(.bold)
+                                     .padding()
+                                     .background(Color.limaoTahiti)
+                                     .cornerRadius(12)
+                             }
+                         }
+                         .padding(.horizontal)
+                     }
+                 }
+                 
                 VStack {
-                    HStack {
-                        Text("Embalando")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                        
-                        Spacer()
-                        
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "arrow.uturn.backward")
-                                .foregroundStyle(.background)
-                                .fontWeight(.bold)
-                                .padding()
-                                .background(.red)
-                                .cornerRadius(12)
-                        }
-                        
-                        Button {
-                            
-                        } label: {
-                            Text("Avançar")
-                                .foregroundStyle(.background)
-                                .fontWeight(.bold)
-                                .padding()
-                                .background(.green)
-                                .cornerRadius(12)
-                        }
-                    }
-                    
                     VStack (alignment: .leading) {
                         Text("Itens do pedido")
+                            .foregroundStyle(Color.principal)
                             .font(.callout)
                             .fontWeight(.bold)
                         
@@ -52,18 +67,41 @@ struct OrderView: View {
                         OrderItemCardListView()
                         
                     }
+                    .padding(.vertical)
                     
                     
                     VStack (alignment: .leading) {
                         Text("Contato do cliente")
+                            .foregroundStyle(Color.principal)
                             .font(.callout)
                             .fontWeight(.bold)
                         
-                        OrderCustomerCardView()
+                        VStack {
+                            OrderCustomerCardView()
+                                .padding(.bottom)
+                            
+                            Button {
+                                print("flamengo")
+                            } label: {
+                                Text("Marcar como pago")
+                                    .frame(maxWidth: .infinity)
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(Color.brancoNeve)
+                                    .padding(8)
+                                    .background(Color.verdeMatcha)
+                                    .cornerRadius(12)
+                            }
+                        }
+                        .padding(.horizontal)
+                        
+                        
                     }
+                    .padding(.vertical)
                     
                     VStack (alignment: .leading) {
                         Text("Observações")
+                            .foregroundStyle(Color.principal)
                             .font(.callout)
                             .fontWeight(.bold)
                         
@@ -73,30 +111,55 @@ struct OrderView: View {
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
-                                    .foregroundColor(.pink)
+                                    .foregroundColor(Color.geleiaDeMorango)
                             )
                             
+                    }
+                    .padding(.vertical)
+                    
+                    
+                    VStack {
+                        Button {
+                            print("flamengo")
+                        } label: {
+                            Text("Cancelar pedido")
+                                .frame(maxWidth: .infinity)
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.brancoNeve)
+                                .padding(8)
+                                .background(Color.picoleDeGroselha)
+                                .cornerRadius(12)
+                        }
+                        .padding(.horizontal)
                     }
                 }
                 .padding(.horizontal)
             }
-             .padding(.vertical)
         }
+        .background(Color.algodaoDoce.edgesIgnoringSafeArea(.bottom))
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .navigation) {
-                Image(systemName: "chevron.backward")
-                    .font(.body)
-                    .fontWeight(.bold)
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.backward")
+                        .foregroundStyle(Color.geleiaDeMorango)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                }
             }
             
             ToolbarItem(placement: .principal) {
                 VStack {
                     Text("Festa de Aniversário")
+                        .foregroundStyle(Color.principal)
                         .font(.title3)
-                        .fontWeight(.bold)
+                        .fontWeight(.semibold)
                     
                     Text("Qua, 13 de outubro | 14:00")
+                        .foregroundStyle(Color.principal)
                         .font(.caption2)
                         .fontWeight(.bold)
                 }
@@ -104,8 +167,9 @@ struct OrderView: View {
             
             ToolbarItem(placement: .primaryAction) {
                 Image(systemName: "square.and.pencil")
+                    .foregroundStyle(Color.amareloGema)
                     .font(.title2)
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
             }
         }
     }

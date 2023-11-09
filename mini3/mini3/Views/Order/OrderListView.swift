@@ -12,81 +12,83 @@ struct OrderListView: View {
     var body: some View {
         NavigationStack {
             ScrollView{
-                ZStack{
-                    VStack {
-                        ZStack {
-                            Image("Cremosinho_Tab")
-                                .resizable()
-                            
-                            HStack(alignment: .top) {
-                                Image("LogoPave")
-                                Spacer()
-                                Button(action: {
-                                    print("adicionar pedido")
-                                }, label: {
-                                    Image(systemName: "plus.app.fill")
-                                        .font(.title)
-                                        .foregroundStyle(.yellow)
-                                    
-                                })
-                                
-                            }
-                            .padding(.horizontal, 32)
-                        }
-                        Spacer()
+                VStack {
+                    ZStack {
+                        Image("Cremosinho_Tab")
+                            .resizable()
                         
-                        VStack(spacing: 8){
-                            HStack {
-                                Text("Encomendas próximas")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                                Spacer()
-                            }
-                            NavigationLink {
-                                OrderView()
-                            } label: {
-                                OrderListCardView()
-                            }
-                            
-                            NavigationLink {
-                                OrderView()
-                            } label: {
-                                OrderListCardView()
-                            }
-                            
+                        HStack(alignment: .top) {
+                            Image("LogoPave")
                             Spacer()
-                                .frame(height: 20)
+                            Button(action: {
+                                print("adicionar pedido")
+                            }, label: {
+                                AddButtonView()
+                            })
                             
-                            HStack {
-                                Text("Todas as encomendas")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                                Spacer()
-                                
-                                Button(action: {
-                                    print("sort ascendente/descendente")
-                                }, label: {
-                                    Image(systemName: "arrow.up.arrow.down.square")
-                                })
-                                
-                                Button(action: {
-                                    print("sort entrega, criaçao e nome")
-                                }, label: {
-                                    Image(systemName: "line.3.horizontal.decrease.circle")
-                                })
-                                
-                                
-                            }
-                            OrderListCardView()
+                        }
+                        .padding(.horizontal, 32)
+                    }
+                    Spacer()
+                    
+                    VStack(spacing: 8){
+                        HStack {
+                            Text("Encomendas próximas")
+                                .foregroundStyle(Color("principal"))
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
                             
                             Spacer()
                         }
-                        .padding(32)
+                        NavigationLink {
+                            OrderView()
+                        } label: {
+                            OrderListCardView()
+                        }
+                        
+                        NavigationLink {
+                            OrderView()
+                        } label: {
+                            OrderListCardView()
+                        }
+                        
+                        Spacer()
+                            .frame(height: 20)
+                        
+                        HStack {
+                            Text("Todas as encomendas")
+                                .foregroundStyle(Color("principal"))
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                print("sort ascendente/descendente")
+                            }, label: {
+                                Image(systemName: "arrow.up.arrow.down.square")
+                                    .foregroundStyle(Color("principal"))
+                            })
+                            
+                            Button(action: {
+                                print("sort entrega, criaçao e nome")
+                            }, label: {
+                                Image(systemName: "line.3.horizontal.decrease.circle")
+                                    .foregroundStyle(Color("principal"))
+                            })
+                            
+                            
+                        }
+                        OrderListCardView()
+                        
+                        Spacer()
                     }
+                    .padding(32)
                     
                 }
+                
             }
-            .background(Color.gray)
+            .background(Color.algodaoDoce.edgesIgnoringSafeArea(.bottom))
         }
     }
 }

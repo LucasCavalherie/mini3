@@ -9,7 +9,27 @@ import SwiftUI
 
 struct OrderStatusListView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack (spacing: 25) {
+            Circle()
+                .frame(width: 45)
+                .foregroundStyle(Color.geleiaDeMorango)
+            
+            Circle()
+                .frame(width: 45)
+                .foregroundStyle(Color.geleiaDeMorango)
+            
+            Circle()
+                .frame(width: 45)
+                .foregroundStyle(Color.geleiaDeMorango)
+            
+            Circle()
+                .frame(width: 45)
+                .foregroundStyle(Color.geleiaDeMorango)
+            
+            Circle()
+                .frame(width: 45)
+                .foregroundStyle(Color.geleiaDeMorango)
+        }
     }
 }
 
