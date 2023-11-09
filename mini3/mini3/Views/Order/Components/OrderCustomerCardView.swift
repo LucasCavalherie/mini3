@@ -11,14 +11,15 @@ struct OrderCustomerCardView: View {
     var body: some View {
         HStack {
             Image("Contato")
-                .opacity(1)
             
             VStack {
                 VStack (alignment: .leading) {
                     Text("Cláudio")
+                        .foregroundStyle(Color.principal)
                         .font(.headline)
                     
                     Text("(65) 98765-4321")
+                        .foregroundStyle(Color.chocolateAoLeite)
                         .font(.caption)
                 }
                 .padding(.bottom)
@@ -28,29 +29,30 @@ struct OrderCustomerCardView: View {
                     Image(systemName: "dollarsign.square.fill")
                         .font(.footnote)
                         .fontWeight(.bold)
-                        .foregroundStyle(.green)
+                        .foregroundStyle(Color.verdeMatcha)
                     
                     Text("Pedido pago")
+                        .foregroundStyle(Color.secundaria)
                         .font(.caption)
                         .fontWeight(.medium)
                 }
                 
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 8)
             
             Spacer()
             
             Image(systemName: "phone.circle.fill")
                 .foregroundStyle(.background)
                 .padding(8)
-                .background(Color.green)
+                .background(Color.limaoTahiti)
                 .clipShape(Circle())
             
         }
-        .padding()
-        .background(.tertiary)
-        .cornerRadius(8)
+        .padding(.vertical, 12)
         .padding(.horizontal)
+        .background(Color.brancoNeve)
+        .cornerRadius(8)
     }
 }
 

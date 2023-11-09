@@ -14,7 +14,7 @@ struct iOSCheckboxToggleStyle: ToggleStyle {
         }, label: {
             HStack {
                 Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
-                    .foregroundStyle(.pink)
+                    .foregroundStyle(Color.geleiaDeMorango)
                 configuration.label
             }
         })
@@ -34,7 +34,7 @@ struct OrderItemCardListView: View {
             }
             .foregroundStyle(.background)
             .padding()
-            .background(.pink)
+            .background(Color.geleiaDeMorango)
             
             Text("Truco truco truco!!!")
             
@@ -44,7 +44,7 @@ struct OrderItemCardListView: View {
                 .toggleStyle(iOSCheckboxToggleStyle())
         }
         .padding(.trailing)
-        .background(.tertiary)
+        .background(Color.brancoNeve)
         .cornerRadius(8)
         .padding(.horizontal)
     }

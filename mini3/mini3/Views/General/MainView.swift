@@ -7,30 +7,35 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     var body: some View {
-        VStack {
-            TabView {
+        TabView {
+            Group {
                 OrderListView()
                     .tabItem {
-                        Label("Menu", systemImage: "calendar")
+                        Label("Agenda", systemImage: "calendar")
                     }
-
+                
                 ProductView()
                     .tabItem {
-                        Label("Order", systemImage: "birthday.cake")
+                        Label("Produtos", systemImage: "birthday.cake")
                     }
                 
                 OrderListDoneView()
                     .tabItem {
-                        Label("Order", systemImage: "list.clipboard.fill")
+                        Label("Pedidos", systemImage: "list.clipboard.fill")
                     }
             }
         }
-        .padding()
+        .tint(Color("geleiaDeMorango"))
+        .onAppear {
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithDefaultBackground()
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    MainView()
 }
