@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductListView: View {
+    @State var shouldPresentSheet = false
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -24,11 +26,17 @@ struct ProductListView: View {
                         
                         
                         Spacer()
-                        Button(action: {
-                            print("adicionar pedido")
-                        }, label: {
+                        
+                        Button() {
+                            shouldPresentSheet.toggle()
+                        } label: {
                             AddButtonView()
-                        })
+                        }
+                        .sheet(isPresented: $shouldPresentSheet) {
+                            print("Sheet dismissed!")
+                        } content: {
+                            ProductCreateEditView()
+                        }
                         
                     }
                     .padding(.horizontal, 32)

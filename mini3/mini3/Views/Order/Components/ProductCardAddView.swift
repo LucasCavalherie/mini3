@@ -8,8 +8,34 @@
 import SwiftUI
 
 struct ProductCardAddView: View {
+    @State var value = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Toggle(isOn: $value) {
+                HStack {
+                    VStack {
+                        Image("Sacola")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 45)
+                    }
+                    .foregroundStyle(.background)
+                    .padding(8)
+                    .background(Color.geleiaDeMorango)
+                    
+                    Text("Bolo de Pedreiro")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(Color.secundaria)
+                        .padding(.horizontal)
+                    
+                }
+            }
+            .padding(.trailing)
+        }
+        .background(Color.brancoNeve)
+        .cornerRadius(8)
     }
 }
 
