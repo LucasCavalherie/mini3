@@ -9,28 +9,37 @@ import Foundation
 import SwiftUI
 
 struct OrderListView: View {
+    @State var shouldPresentSheet = false
+    
     var body: some View {
         NavigationStack {
-            ScrollView{
-                VStack {
-                    ZStack {
-                        Image("Cremosinho_Tab")
-                            .resizable()
-                            .scaledToFit()
+            VStack {
+                ZStack {
+                    Image("Cremosinho_Tab")
+                        .resizable()
+                        .scaledToFit()
+                    
+                    HStack(alignment: .top) {
+                        Image("LogoPave")
+                        Spacer()
                         
-                        HStack(alignment: .top) {
-                            Image("LogoPave")
-                            Spacer()
-                            Button(action: {
-                                print("adicionar pedido")
-                            }, label: {
-                                AddButtonView()
-                            })
-                            
+                        Button() {
+                            shouldPresentSheet.toggle()
+                        } label: {
+                            AddButtonView()
                         }
-                        .padding(.horizontal, 32)
+                        .sheet(isPresented: $shouldPresentSheet) {
+                            print("Sheet dismissed!")
+                        } content: {
+                            OrderCreateEditView()
+                        }
+                        
                     }
-                    Spacer()
+                    .padding(.horizontal, 32)
+                }
+                Spacer()
+                
+                ScrollView{
                     
                     VStack(spacing: 8){
                         HStack {
@@ -80,13 +89,22 @@ struct OrderListView: View {
                             
                             
                         }
-                        OrderListCardView()
+                        
+                        ForEach (1..<11) { index in
+                            NavigationLink {
+                                OrderView()
+                            } label: {
+                                OrderListCardView()
+                            }
+                        }
                         
                         Spacer()
+                        
                     }
-                    .padding(32)
-                    
                 }
+                .padding(32)
+                
+                
                 
             }
             .background(Color.algodaoDoce.edgesIgnoringSafeArea(.bottom))

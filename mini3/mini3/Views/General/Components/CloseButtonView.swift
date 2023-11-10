@@ -9,7 +9,13 @@ import SwiftUI
 
 struct CloseButtonView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image(systemName: "xmark")
+            .foregroundColor(.white)
+            .font(.callout)
+            .fontWeight(.bold)
+            .padding(8)
+            .background(.picoleDeGroselha)
+            .cornerRadius(8)
     }
 }
 
