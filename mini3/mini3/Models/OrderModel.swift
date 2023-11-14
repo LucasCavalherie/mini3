@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum OrderStatus {
     case toDo
@@ -26,4 +27,38 @@ struct OrderModel: Identifiable {
     var status: OrderStatus
     var customer: CustomerModel
     var orderItems: [OrderItemModel]
+    
+    func getStatusName() -> String {
+        switch status {
+            case .toDo:
+                return "A Fazer"
+            case .doing:
+                return "Fazendo"
+            case .packing:
+                return "Embalando"
+            case .done:
+                return "Feito"
+            case .toDeliver:
+                return "A Entregar"
+            case .canceled:
+                return "Cancelado"
+        }
+    }
+    
+    func getStatusColor() -> Color {
+        switch status {
+            case .toDo:
+                return .chocolateMeioAmargo
+            case .doing:
+                return .amareloGema
+            case .packing:
+                return .geleiaDeMorango
+            case .done:
+                return .limaoTahiti
+            case .toDeliver:
+                return .verdeMatcha
+            case .canceled:
+                return .picoleDeGroselha
+        }
+    }
 }

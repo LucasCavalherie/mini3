@@ -10,6 +10,11 @@ import SwiftUI
 struct ProductView: View {
     @Environment(\.dismiss) private var dismiss
     
+    @ObservedObject var viewModel: ProductViewModel = ProductViewModel.shared
+    @State private var showAlert = false
+    @State var shouldPresentSheet = false
+    var product : ProductModel
+    
     var body: some View {
         VStack {
             
@@ -41,12 +46,12 @@ struct ProductView: View {
                     VStack {
                         HStack {
                             VStack (alignment: .leading) {
-                                Text("Bolo de Chocolate")
+                                Text(product.name)
                                     .font(.largeTitle)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(.principal)
                                 
-                                Text("Notas sobre o produto")
+                                Text(product.observation ?? "")
                                     .font(.subheadline)
                                     .foregroundStyle(.principal)
                             }
@@ -91,7 +96,7 @@ struct ProductView: View {
                                     .fontWeight(.heavy)
                                     .foregroundStyle(.geleiaDeMorango)
                                 
-                                Text("102")
+                                Text("\(String(format: "%.2f", product.priceBase))")
                                     .font(.title)
                                     .fontWeight(.heavy)
                                     .foregroundStyle(.geleiaDeMorango)
@@ -129,16 +134,44 @@ struct ProductView: View {
             ToolbarItem(placement: .primaryAction) {
                 
                 HStack {
-                    Image(systemName: "square.and.pencil")
-                        .foregroundStyle(Color.brancoNeve)
-                        .font(.body)
-                        .fontWeight(.semibold)
-                        .padding(.trailing)
                     
-                    Image(systemName: "trash.fill")
-                        .foregroundStyle(Color.brancoNeve)
-                        .font(.body)
-                        .fontWeight(.semibold)
+                    
+                    Button() {
+                        shouldPresentSheet.toggle()
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                            .foregroundStyle(Color.brancoNeve)
+                            .font(.body)
+                            .fontWeight(.semibold)
+                            .padding(.trailing)
+                    }
+                    .sheet(isPresented: $shouldPresentSheet) {
+                        print("Sheet dismissed!")
+                    } content: {
+                        ProductCreateEditView(product: product)
+                    }
+                    
+                    Button {
+                        showAlert = true
+                    } label: {
+                        Image(systemName: "trash.fill")
+                            .foregroundStyle(Color.brancoNeve)
+                            .font(.body)
+                            .fontWeight(.semibold)
+                    }
+                    .padding(.horizontal)
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Confirmação"),
+                            message: Text("Tem certeza de que deseja deletar?"),
+                            primaryButton: .destructive(Text("Deletar")) {
+                                viewModel.removeProduct(id: product.id)
+                                dismiss()
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    }
+                    
                 }
                 .padding(.trailing, 8)
                 
@@ -148,5 +181,5 @@ struct ProductView: View {
 }
 
 #Preview {
-    ProductView()
+    ProductView(product: ProductModel(name: "Bolo", observation: "Observacao", priceBase: 10, createdAt: Date.now))
 }

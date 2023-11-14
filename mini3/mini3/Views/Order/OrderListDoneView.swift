@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct OrderListDoneView: View {
+    @State var shouldPresentSheet = false
+    @ObservedObject var viewModel = OrderViewModel.shared
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -24,11 +27,17 @@ struct OrderListDoneView: View {
                         
                         
                         Spacer()
-                        Button(action: {
-                            print("adicionar pedido")
-                        }, label: {
+                        
+                        Button() {
+                            shouldPresentSheet.toggle()
+                        } label: {
                             AddButtonView()
-                        })
+                        }
+                        .sheet(isPresented: $shouldPresentSheet) {
+                            print("Sheet dismissed!")
+                        } content: {
+                            OrderCreateEditView()
+                        }
                         
                     }
                     .padding(.horizontal, 32)
@@ -62,11 +71,11 @@ struct OrderListDoneView: View {
                     
                     ScrollView (showsIndicators: false){
                         VStack {
-                            ForEach (1..<11) { index in
+                            ForEach (viewModel.listAllOrders()) { order in
                                 NavigationLink {
-                                    OrderView()
+                                    OrderView(order: order)
                                 } label: {
-                                    OrderListCardView()
+                                    OrderListCardView(order: order)
                                 }
                             }
                             

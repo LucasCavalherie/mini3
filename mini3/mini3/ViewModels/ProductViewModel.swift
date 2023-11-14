@@ -15,7 +15,9 @@ class ProductViewModel: ObservableObject {
     let sharedUserDefaults = UserDefaults()
     let productKey = "products"
     
-    @Published var products : [ProductModel] = []
+    @Published var products : [ProductModel] = [
+        ProductModel(name: "Produto 1", observation: "observacao", priceBase: 10, createdAt: Date.now)
+    ]
     @Published var currentProduct : ProductModel?
     
     func sortProducts() {
@@ -31,12 +33,11 @@ class ProductViewModel: ObservableObject {
         sortProducts()
     }
     
-    func editProduct(id: UUID, name: String, observation: String?, priceBase: Float, createdAt: Date) {
+    func editProduct(id: UUID, name: String, observation: String?, priceBase: Float) {
         if let index = getProductIndex(id: id) {
             products[index].name = name
             products[index].observation = observation
             products[index].priceBase = priceBase
-            products[index].createdAt = createdAt
         }
     }
     

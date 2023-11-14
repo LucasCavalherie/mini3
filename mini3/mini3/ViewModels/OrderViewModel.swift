@@ -15,7 +15,11 @@ class OrderViewModel: ObservableObject {
     let sharedUserDefaults = UserDefaults()
     let orderKey = "order"
     
-    @Published var orders : [OrderModel] = []
+    @Published var orders : [OrderModel] = [
+        OrderModel.create(orderName: "Pedido 1", deliveryDate: Date.now, status: .toDo), 
+        OrderModel.create(orderName: "Pedido 2", deliveryDate: Calendar.current.date(byAdding: .day, value: 1, to: Date.now)!, status: .toDo),
+        OrderModel.create(orderName: "Pedido 3", deliveryDate: Calendar.current.date(byAdding: .day, value: 9, to: Date.now)!, status: .toDo)
+    ]
     @Published var currentOrder : OrderModel?
     
     func getOrderIndex(id: UUID) -> Int? {
@@ -24,6 +28,7 @@ class OrderViewModel: ObservableObject {
     
     func addOrder(orderName: String, deliveryDate: Date, observation: String, value: Double, isPaid: Bool, customerName: String, customerContact: String, contactForm: ContactForm) {
         let orderItems = OrderItemViewModel.shared.listOrderItem()
+        OrderItemViewModel.shared.orderItemModels = []
         let customerModel = CustomerModel(name: customerName, contact: customerContact, contactForm: contactForm)
         orders.append(OrderModel(orderName: orderName, deliveryDate: deliveryDate, observation: observation, value: value, isPaid: isPaid, status: .toDo, customer: customerModel, orderItems: orderItems))
     }
@@ -46,6 +51,20 @@ class OrderViewModel: ObservableObject {
     func removeOrder(id: UUID) {
         if let index = getOrderIndex(id: id) {
             orders.remove(at: index)
+        }
+    }
+    
+    func markAsPaid(id: UUID) {
+        if let index = getOrderIndex(id: id) {
+            orders[index].isPaid = true
+            currentOrder?.isPaid = true
+        }
+    }
+    
+    func markAsNotPaid(id: UUID) {
+        if let index = getOrderIndex(id: id) {
+            orders[index].isPaid = false
+            currentOrder?.isPaid = false
         }
     }
     
@@ -77,6 +96,11 @@ class OrderViewModel: ObservableObject {
         }
     }
     
+    func cancel() {
+        let id = currentOrder!.id
+        changeStatus(id: id, status: .canceled)
+    }
+    
     func changeStatus(id: UUID, status: OrderStatus) {
         if let index = getOrderIndex(id: id) {
             currentOrder!.status = status
@@ -84,8 +108,66 @@ class OrderViewModel: ObservableObject {
         }
     }
     
+    func listTodayOrders() -> [OrderModel] {
+        let today = Date()
+
+        return orders.filter { order in
+            let isToDoOrDoing = order.status == .toDo || order.status == .doing
+            let isDeliveryToday = Calendar.current.isDate(order.deliveryDate, inSameDayAs: today)
+            return isToDoOrDoing && isDeliveryToday
+        }
+    }
+    
+    func listNext7DaysOrders() -> [OrderModel] {
+        let today = Date()
+        let sevenDaysLater = Calendar.current.date(byAdding: .day, value: 8, to: today)!
+
+        return orders.filter { order in
+            let isToDoOrDoing = order.status == .toDo || order.status == .doing
+            let isDeliveryNext7Days = today..<sevenDaysLater ~= order.deliveryDate
+            return isToDoOrDoing && isDeliveryNext7Days
+        }
+    }
+    
+    func listNext30DaysOrders() -> [OrderModel] {
+        let today = Date()
+        let next7DaysLater = Calendar.current.date(byAdding: .day, value: 8, to: today)! // Início dos próximos 30 dias
+        let next30DaysLater = Calendar.current.date(byAdding: .day, value: 30, to: today)!
+
+        return orders.filter { order in
+            let isToDoOrDoing = order.status == .toDo || order.status == .doing
+            let isDeliveryNext30Days = next7DaysLater..<next30DaysLater ~= order.deliveryDate
+            return isToDoOrDoing && isDeliveryNext30Days
+        }
+    }
+    
+    func sortOrdersByStatus(_ orders: [OrderModel]) -> [OrderModel] {
+        return orders.sorted { (order1, order2) in
+            let statusOrder1 = order1.status
+            let statusOrder2 = order2.status
+
+            // Obtém a ordem numérica do enum para comparar
+            let orderValueOrder1 = getOrderStatusValue(statusOrder1)
+            let orderValueOrder2 = getOrderStatusValue(statusOrder2)
+
+            // Ordena com base nas ordens numéricas obtidas
+            return orderValueOrder1 < orderValueOrder2
+        }
+    }
+
+    func getOrderStatusValue(_ status: OrderStatus) -> Int {
+        switch status {
+            case .toDo: return 0
+            case .doing: return 1
+            case .packing: return 2
+            case .done: return 3
+            case .toDeliver: return 4
+            case .canceled: return 5
+        }
+    }
+    
     func listAllOrders() -> [OrderModel] {
-        return orders
+        return sortOrdersByStatus(orders)
     }
     
     func listUpcomingDeliveries() -> [OrderModel] {

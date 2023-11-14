@@ -11,6 +11,8 @@ import SwiftUI
 struct OrderListView: View {
     @State var shouldPresentSheet = false
     
+    @ObservedObject var viewModel: OrderViewModel = OrderViewModel.shared
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -39,66 +41,78 @@ struct OrderListView: View {
                 }
                 Spacer()
                 
-                ScrollView{
+                ScrollView (showsIndicators: false) {
                     
                     VStack(spacing: 8){
-                        HStack {
-                            Text("Encomendas próximas")
-                                .foregroundStyle(Color("principal"))
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                            
-                            Spacer()
-                        }
-                        NavigationLink {
-                            OrderView()
-                        } label: {
-                            OrderListCardView()
-                        }
                         
-                        NavigationLink {
-                            OrderView()
-                        } label: {
-                            OrderListCardView()
-                        }
-                        
-                        Spacer()
-                            .frame(height: 20)
-                        
-                        HStack {
-                            Text("Todas as encomendas")
-                                .foregroundStyle(Color("principal"))
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                print("sort ascendente/descendente")
-                            }, label: {
-                                Image(systemName: "arrow.up.arrow.down.square")
-                                    .foregroundStyle(Color("principal"))
-                            })
-                            
-                            Button(action: {
-                                print("sort entrega, criaçao e nome")
-                            }, label: {
-                                Image(systemName: "line.3.horizontal.decrease.circle")
-                                    .foregroundStyle(Color("principal"))
-                            })
-                            
-                            
-                        }
-                        
-                        ForEach (1..<11) { index in
-                            NavigationLink {
-                                OrderView()
-                            } label: {
-                                OrderListCardView()
+                        if viewModel.listTodayOrders().count > 0 {
+                            VStack {
+                                HStack {
+                                    Text("Hoje")
+                                        .foregroundStyle(Color("principal"))
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                    
+                                    Spacer()
+                                }
+                                
+                                ForEach(viewModel.listTodayOrders()) { order in
+                                    NavigationLink {
+                                        OrderView(order: order)
+                                    } label: {
+                                        OrderListCardView(order: order)
+                                    }
+                                }
+                                
+                                Spacer()
                             }
                         }
                         
-                        Spacer()
+                        if viewModel.listNext7DaysOrders().count > 0 {
+                            VStack {
+                                HStack {
+                                    Text("Essa semana")
+                                        .foregroundStyle(Color("principal"))
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                    
+                                    Spacer()
+                                }
+                                
+                                ForEach(viewModel.listNext7DaysOrders()) { order in
+                                    NavigationLink {
+                                        OrderView(order: order)
+                                    } label: {
+                                        OrderListCardView(order: order)
+                                    }
+                                }
+                                
+                                Spacer()
+                            }
+                        }
+                        
+                        if viewModel.listNext30DaysOrders().count > 0 {
+                            VStack {
+                                HStack {
+                                    Text("Esse mês")
+                                        .foregroundStyle(Color("principal"))
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                    
+                                    Spacer()
+                                }
+                                
+                                ForEach(viewModel.listNext30DaysOrders()) { order in
+                                    NavigationLink {
+                                        OrderView(order: order)
+                                    } label: {
+                                        OrderListCardView(order: order)
+                                    }
+                                }
+                                
+                                Spacer()
+                            }
+                        }
                         
                     }
                 }

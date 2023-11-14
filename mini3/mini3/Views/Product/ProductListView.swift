@@ -10,6 +10,8 @@ import SwiftUI
 struct ProductListView: View {
     @State var shouldPresentSheet = false
     
+    @ObservedObject var viewModel: ProductViewModel = ProductViewModel.shared
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -70,11 +72,11 @@ struct ProductListView: View {
                     
                     ScrollView (showsIndicators: false){
                         VStack {
-                            ForEach (1..<11) { index in
+                            ForEach (viewModel.listProducts()) { product in
                                 NavigationLink {
-                                    ProductView()
+                                    ProductView(product: product)
                                 } label: {
-                                    ProductListCardView()
+                                    ProductListCardView(product: product)
                                 }
                             }
                             

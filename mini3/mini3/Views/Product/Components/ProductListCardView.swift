@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductListCardView: View {
+    var product : ProductModel
+    
     var body: some View {
         HStack {
             VStack {
@@ -21,11 +23,11 @@ struct ProductListCardView: View {
             .background(Color.geleiaDeMorango)
             
             VStack (alignment: .leading) {
-                Text("Bolo de Pedreiro")
+                Text(product.name)
                     .font(.headline)
                     .foregroundStyle(Color.secundaria)
                 
-                Text("Detalhe breve do pedido")
+                Text(product.observation ?? "")
                     .font(.caption2)
                     .foregroundStyle(Color.chocolateAoLeite)
             }
@@ -41,5 +43,5 @@ struct ProductListCardView: View {
 }
 
 #Preview {
-    ProductListCardView()
+    ProductListCardView(product: ProductModel(name: "Produto", observation: "Obs", priceBase: 10, createdAt: Date.now))
 }

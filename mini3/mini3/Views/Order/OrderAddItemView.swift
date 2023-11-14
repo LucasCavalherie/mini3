@@ -11,6 +11,8 @@ struct OrderAddItemView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    @ObservedObject var viewModel: ProductViewModel = ProductViewModel.shared
+    
     var body: some View {
         VStack {
             HStack {
@@ -34,13 +36,13 @@ struct OrderAddItemView: View {
             VStack (alignment: .leading) {
                 
                 ScrollView (showsIndicators: false) {
-                    ForEach (1..<11) { index in
-                        ProductCardAddView()
+                    ForEach (viewModel.listProducts()) { product in
+                        ProductCardAddView(product: product)
                     }
                 }
                 
                 Button {
-                    print("flamengo")
+                    dismiss()
                 } label: {
                     Text("Salvar")
                         .frame(maxWidth: .infinity)
