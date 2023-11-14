@@ -37,6 +37,7 @@
 		73664F292AF03F2000781AE0 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F282AF03F2000781AE0 /* OrderViewModel.swift */; };
 		73664F2B2AF03F3500781AE0 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73664F2A2AF03F3500781AE0 /* ProductViewModel.swift */; };
 		737710EF2AF17A4900A80C10 /* OrderItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737710EE2AF17A4900A80C10 /* OrderItemViewModel.swift */; };
+		D9B34DA32B0179FC00F51C71 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B34DA22B0179FC00F51C71 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		73664F282AF03F2000781AE0 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		73664F2A2AF03F3500781AE0 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		737710EE2AF17A4900A80C10 /* OrderItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewModel.swift; sourceTree = "<group>"; };
+		D9B34DA22B0179FC00F51C71 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			children = (
 				73643DF42AFAB76A00207821 /* Components */,
 				73664F072AEC31FB00781AE0 /* MainView.swift */,
+				D9B34DA22B0179FC00F51C71 /* OnboardingView.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				73664F182AEC4DB900781AE0 /* OrderListView.swift in Sources */,
 				73643DE22AFAB22F00207821 /* ProductListCardView.swift in Sources */,
 				73643DF02AFAB69500207821 /* OrderView.swift in Sources */,
+				D9B34DA32B0179FC00F51C71 /* OnboardingView.swift in Sources */,
 				73643DDD2AFAB15200207821 /* ProductCreateEditView.swift in Sources */,
 				73643DF82AFAB7B300207821 /* AddButtonView.swift in Sources */,
 				73664F2B2AF03F3500781AE0 /* ProductViewModel.swift in Sources */,
