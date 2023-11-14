@@ -10,6 +10,27 @@ import Foundation
 import SwiftUI
 
 struct OrderListCardView: View {
+    
+    let getDay: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        return formatter
+    }()
+    
+    let getWeekDay: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E"
+        return formatter
+    }()
+    
+    let getHour: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }()
+    
+    var order: OrderModel
+    
     var body: some View {
         
         VStack(alignment: .center) {
@@ -23,7 +44,7 @@ struct OrderListCardView: View {
                         .overlay(
                             VStack {
                                 UnevenRoundedRectangle(topLeadingRadius: 8, topTrailingRadius: 8)
-                                    .fill(Color("verdeMatcha"))
+                                    .fill(order.getStatusColor())
                                     .background()
                                     .frame(height: 20)
                                 Spacer()
@@ -31,18 +52,18 @@ struct OrderListCardView: View {
                         )
                     
                     VStack {
-                        Text("QUA")
+                        Text(getWeekDay.string(from: order.deliveryDate))
                             .foregroundStyle(Color("brancoNeve"))
                             .font(.footnote)
                             .bold()
                         
-                        Text("30")
+                        Text(getDay.string(from: order.deliveryDate))
                             .font(.custom("Ginormous", size: 36))
                             .foregroundStyle(Color("secundaria"))
                             .fontWeight(.black)
                             .padding(.top, 0)
                         
-                        Text("20:00")
+                        Text(getHour.string(from: order.deliveryDate))
                             .font(.footnote)
                             .foregroundStyle(Color("secundaria"))
                         
@@ -52,11 +73,11 @@ struct OrderListCardView: View {
                 
                 
                 VStack (alignment: .leading) {
-                    Text("Aniversário Nicole")
+                    Text(order.orderName)
                         .foregroundStyle(Color("secundaria"))
                         .font(.headline)
                     
-                    Text("50 un. brigadeiro, 50 un. beijinho, 1kg bolo de chocolate")
+                    Text(order.observation)
                         .foregroundStyle(Color("boloDePedreiro"))
                         .font(.caption2)
                         .frame(maxWidth: 150)
@@ -67,13 +88,13 @@ struct OrderListCardView: View {
                         ZStack {
                             VStack {
                                 GeometryReader { geometry in
-                                    Text("Embalando")
-                                        .foregroundStyle(Color.verdeMatcha)
+                                    Text(order.getStatusName())
+                                        .foregroundStyle(order.getStatusColor())
                                         .padding(.vertical, 4)
                                         .padding(.horizontal, 12)
                                         .background(
                                             RoundedRectangle(cornerRadius: 16)
-                                                .stroke(Color("verdeMatcha"), lineWidth: 1)
+                                                .stroke(order.getStatusColor(), lineWidth: 1)
                                         )
                                         .frame(width: geometry.size.width, height: 28, alignment: .leading)
                                 }
@@ -105,7 +126,7 @@ struct OrderListCardView: View {
             HStack {
                 Spacer()
                 UnevenRoundedRectangle(bottomTrailingRadius: 8, topTrailingRadius: 8)
-                    .fill(Color("verdeMatcha"))
+                    .fill(order.getStatusColor())
                     .frame(width: 8)
                 
             }
@@ -114,5 +135,5 @@ struct OrderListCardView: View {
 }
 
 #Preview {
-    OrderListCardView()
+    OrderListCardView(order: OrderModel.create())
 }

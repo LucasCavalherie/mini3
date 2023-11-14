@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct OrderCustomerCardView: View {
+    
+    var order : OrderModel
+    
     var body: some View {
         HStack {
             Image("Contato")
             
-            VStack {
+            VStack (alignment: .leading){
                 VStack (alignment: .leading) {
-                    Text("Cláudio")
+                    Text(order.customer.name)
                         .foregroundStyle(Color.principal)
                         .font(.headline)
                     
-                    Text("(65) 98765-4321")
+                    Text(order.customer.contact)
                         .foregroundStyle(Color.chocolateAoLeite)
                         .font(.caption)
                 }
@@ -29,9 +32,9 @@ struct OrderCustomerCardView: View {
                     Image(systemName: "dollarsign.square.fill")
                         .font(.footnote)
                         .fontWeight(.bold)
-                        .foregroundStyle(Color.verdeMatcha)
+                        .foregroundStyle(order.isPaid ? Color.verdeMatcha: Color.picoleDeGroselha)
                     
-                    Text("Pedido pago")
+                    Text(order.isPaid ? "Pedido pago": "Pagamento pendente")
                         .foregroundStyle(Color.secundaria)
                         .font(.caption)
                         .fontWeight(.medium)
@@ -57,5 +60,5 @@ struct OrderCustomerCardView: View {
 }
 
 #Preview {
-    OrderCustomerCardView()
+    OrderCustomerCardView(order: OrderModel.create())
 }

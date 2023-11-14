@@ -23,11 +23,14 @@ struct iOSCheckboxToggleStyle: ToggleStyle {
 
 struct OrderItemCardListView: View {
     @State private var isOn = false
+    var orderItem : OrderItemModel
+    
+    @ObservedObject var viewModel: ProductViewModel = ProductViewModel.shared
     
     var body: some View {
         HStack {
             VStack {
-                Text("50")
+                Text("\(orderItem.quantity)")
                     .fontWeight(.bold)
                 Text("un.")
                     .font(.caption2)
@@ -36,7 +39,7 @@ struct OrderItemCardListView: View {
             .padding()
             .background(Color.geleiaDeMorango)
             
-            Text("Truco truco truco!!!")
+            Text("\(viewModel.getProduct(id: orderItem.productId)?.name ?? "")")
             
             Spacer()
             
@@ -51,5 +54,5 @@ struct OrderItemCardListView: View {
 }
 
 #Preview {
-    OrderItemCardListView()
+    OrderItemCardListView(orderItem: OrderItemModel(productId: UUID(), quantity: 10))
 }

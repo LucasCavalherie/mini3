@@ -9,18 +9,25 @@ import SwiftUI
 
 struct OrderCreateEditView: View {
     
+    @State var order : OrderModel? = nil
+    
     @State var name = ""
+    @State var observation = ""
     @State var customerName = ""
     @State var customerContact = ""
     @State var date : Date = Date()
     
     @State var shouldPresentSheet = false
+    
     @Environment(\.dismiss) private var dismiss
+    
+    @ObservedObject var viewModel: OrderViewModel = OrderViewModel.shared
+    @ObservedObject var orderItemViewModel: OrderItemViewModel = OrderItemViewModel.shared
     
     var body: some View {
         VStack {
             HStack {
-                Text("Adicionar produto")
+                Text("Adicionar pedido")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .foregroundStyle(.principal)
@@ -37,9 +44,15 @@ struct OrderCreateEditView: View {
             .padding(.horizontal, 32)
             
             Form {
-                TextField("Nome do produto...", text: $name)
-                TextField("Valor base do produto...", text: $customerName)
-                TextField("Valor base do produto...", text: $customerContact)
+                Section {
+                    TextField("Nome do pedido...", text: $name)
+                    TextField("Nome do cliente...", text: $customerName)
+                    TextField("Contato do clinte...", text: $customerContact)
+                }
+                
+                Section {
+                    TextField("Observação...", text: $observation)
+                }
             }
             .frame(height: 175)
             .padding(.horizontal)
@@ -76,13 +89,38 @@ struct OrderCreateEditView: View {
                 .padding(.top)
                 
                 ScrollView (showsIndicators: false) {
-                    ForEach (1..<11) { index in
-                        OrderItemCardAddView()
+                    ForEach (orderItemViewModel.orderItemModels) { orderItem in
+                        OrderItemCardAddView(orderItem: orderItem)
                     }
                 }
                 
                 Button {
-                    print("flamengo")
+                    if let order = order {
+                        viewModel.editOrder(
+                            id: order.id,
+                            orderName: name,
+                            deliveryDate: date,
+                            observation: observation,
+                            value: 0,
+                            isPaid: false,
+                            customerName: customerName,
+                            customerContact: customerContact,
+                            contactForm: .whatsapp
+                        )
+                    } else {
+                        viewModel.addOrder(
+                            orderName: name,
+                            deliveryDate: date,
+                            observation: observation,
+                            value: 0,
+                            isPaid: false,
+                            customerName: customerName,
+                            customerContact: customerContact,
+                            contactForm: .whatsapp
+                        )
+                    }
+                    
+                    dismiss()
                 } label: {
                     Text("Salvar")
                         .frame(maxWidth: .infinity)
@@ -99,6 +137,19 @@ struct OrderCreateEditView: View {
             
         }
         .background(.algodaoDoce)
+        .onAppear{
+            if let orderModel = order {
+                name = orderModel.orderName
+                observation = orderModel.observation
+                customerName = orderModel.customer.name
+                customerContact = orderModel.customer.contact
+                date = orderModel.deliveryDate
+                orderItemViewModel.orderItemModels = orderModel.orderItems
+            }
+        }
+        .onDisappear{
+            orderItemViewModel.orderItemModels = []
+        }
     }
 }
 

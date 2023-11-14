@@ -10,6 +10,9 @@ import SwiftUI
 struct ProductCardAddView: View {
     @State var value = false
     
+    var product : ProductModel
+    @ObservedObject var orderItemViewModel: OrderItemViewModel = OrderItemViewModel.shared
+
     var body: some View {
         HStack {
             Toggle(isOn: $value) {
@@ -24,7 +27,7 @@ struct ProductCardAddView: View {
                     .padding(8)
                     .background(Color.geleiaDeMorango)
                     
-                    Text("Bolo de Pedreiro")
+                    Text(product.name)
                         .font(.headline)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.secundaria)
@@ -36,9 +39,16 @@ struct ProductCardAddView: View {
         }
         .background(Color.brancoNeve)
         .cornerRadius(8)
+        .onChange(of: value) { _, newValue in
+            if newValue {
+                orderItemViewModel.addOrderItem(productId: product.id, quantity: 0)
+            } else {
+                orderItemViewModel.removeOrderItemByProductId(productId: product.id)
+            }
+        }
     }
 }
 
 #Preview {
-    ProductCardAddView()
+    ProductCardAddView(product: ProductModel(name: "", priceBase: 10, createdAt: Date.now))
 }

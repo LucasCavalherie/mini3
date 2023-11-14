@@ -18,9 +18,15 @@ class OrderItemViewModel: ObservableObject {
         orderItemModels.append(OrderItemModel(productId: productId, quantity: quantity))
     }
     
-    func editOrderItem(productId: UUID, quantity: Int) {
-        if let index = orderItemModels.firstIndex(where: { $0.id == productId }) {
+    func editOrderItem(id: UUID, quantity: Int) {
+        if let index = orderItemModels.firstIndex(where: { $0.id == id }) {
             orderItemModels[index].quantity = quantity
+        }
+    }
+    
+    func removeOrderItemByProductId(productId: UUID) {
+        if let index = orderItemModels.firstIndex(where: { $0.productId == productId }) {
+            orderItemModels.remove(at: index)
         }
     }
     
