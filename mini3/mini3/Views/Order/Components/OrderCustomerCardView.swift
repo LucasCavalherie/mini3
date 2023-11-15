@@ -13,7 +13,7 @@ struct OrderCustomerCardView: View {
     
     var body: some View {
         HStack {
-            Image("Contato")
+            Image(order.isPaid ? "Contato" : "ContatoVermelho")
             
             VStack (alignment: .leading){
                 VStack (alignment: .leading) {

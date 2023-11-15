@@ -11,5 +11,6 @@ struct OrderItemModel: Identifiable, Codable {
     var id: UUID = UUID()
     var productId: UUID
     var quantity: Int
+    var done: Bool = false
 }
 

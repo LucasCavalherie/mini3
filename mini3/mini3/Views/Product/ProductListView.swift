@@ -16,17 +16,14 @@ struct ProductListView: View {
         NavigationStack {
             VStack {
                 ZStack {
-                    Image("Cremosinho_Redondo")
+                    Image("Cremosinho_Tab")
                         .resizable()
                         .scaledToFit()
                     
                     HStack(alignment: .top) {
-                        Text("Produtos")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.principal)
-                        
-                        
+                        Image("produtos")
+                            .resizable()
+                            .frame(width: 150, height: 50)
                         Spacer()
                         
                         Button() {

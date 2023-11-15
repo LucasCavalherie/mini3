@@ -15,17 +15,14 @@ struct OrderListDoneView: View {
         NavigationStack {
             VStack {
                 ZStack {
-                    Image("Cremosinho_Redondo")
+                    Image("Cremosinho_Tab")
                         .resizable()
                         .scaledToFit()
                     
                     HStack(alignment: .top) {
-                        Text("Pedidos")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.principal)
-                        
-                        
+                        Image("pedidos")
+                            .resizable()
+                            .frame(width: 150, height: 50)
                         Spacer()
                         
                         Button() {

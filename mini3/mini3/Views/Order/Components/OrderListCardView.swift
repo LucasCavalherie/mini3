@@ -80,7 +80,6 @@ struct OrderListCardView: View {
                     Text(order.observation)
                         .foregroundStyle(Color("boloDePedreiro"))
                         .font(.caption2)
-                        .frame(maxWidth: 150)
                     
                     
                     
