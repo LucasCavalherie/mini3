@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OrderItemModel: Identifiable {
+struct OrderItemModel: Identifiable, Codable {
     var id: UUID = UUID()
     var productId: UUID
     var quantity: Int

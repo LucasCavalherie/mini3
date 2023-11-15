@@ -10,15 +10,36 @@ import Foundation
 class ProductViewModel: ObservableObject {
     static let shared = ProductViewModel()
     
-    private init() {}
+    private init() {
+        loadProducts()
+    }
     
-    let sharedUserDefaults = UserDefaults()
-    let productKey = "products"
-    
-    @Published var products : [ProductModel] = [
-        ProductModel(name: "Produto 1", observation: "observacao", priceBase: 10, createdAt: Date.now)
-    ]
+    @Published var products : [ProductModel] = [] { didSet { saveProducts() } }
     @Published var currentProduct : ProductModel?
+    
+    // Saving Data
+    let sharedUserDefaults = UserDefaults.standard
+    let productKey = "products"
+
+    private func loadProducts() {
+        if let data = sharedUserDefaults.data(forKey: productKey),
+           let decodedOrders = try? JSONDecoder().decode([ProductModel].self, from: data) {
+            products = decodedOrders
+        }
+    }
+
+    private func saveProducts() {
+        if let encodedOrders = try? JSONEncoder().encode(products) {
+            sharedUserDefaults.set(encodedOrders, forKey: productKey)
+        }
+    }
+    
+    func clearProducts() {
+        sharedUserDefaults.removeObject(forKey: productKey)
+        products = []
+    }
+    
+    // Functions
     
     func sortProducts() {
         products.sort()

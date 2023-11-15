@@ -12,7 +12,7 @@ struct ProductCreateEditView: View {
     var product : ProductModel? = nil
     
     @State var name = ""
-    @State var value : Float = 0
+    @State var value: Float? = nil
     @State var observation = ""
     @Environment(\.dismiss) private var dismiss
     
@@ -62,9 +62,9 @@ struct ProductCreateEditView: View {
             
             Button {
                 if let product = product {
-                    viewModel.editProduct(id: product.id, name: name, observation: observation, priceBase: value)
+                    viewModel.editProduct(id: product.id, name: name, observation: observation, priceBase: value ?? 0)
                 } else {
-                    viewModel.addProduct(name: name, observation: observation, priceBase: value, createdAt: Date.now)
+                    viewModel.addProduct(name: name, observation: observation, priceBase: value ?? 0, createdAt: Date.now)
                 }
                 
                 dismiss()

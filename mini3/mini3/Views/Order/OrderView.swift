@@ -29,46 +29,8 @@ struct OrderView: View {
                          .resizable()
                      
                      VStack {
-                         OrderStatusListView()
+                         OrderStatusListView(order: order)
                              .padding(.vertical)
-                         
-                         HStack {
-                             Text(order.getStatusName())
-                                 .foregroundStyle(Color.secundaria)
-                                 .font(.title3)
-                                 .fontWeight(.bold)
-                             
-                             Spacer()
-                             
-                             if order.status != .canceled {
-                                 Button {
-                                     viewModel.previousStatus()
-                                     updateOrder()
-                                 } label: {
-                                     Image(systemName: "arrow.uturn.backward")
-                                         .foregroundStyle(.background)
-                                         .fontWeight(.bold)
-                                         .padding()
-                                         .background(Color.picoleDeGroselha)
-                                         .cornerRadius(12)
-                                 }
-                             }
-                             
-                             if order.status != .canceled {
-                                 Button {
-                                     viewModel.nextStatus()
-                                     updateOrder()
-                                 } label: {
-                                     Text("Avançar")
-                                         .foregroundStyle(.background)
-                                         .fontWeight(.bold)
-                                         .padding()
-                                         .background(Color.limaoTahiti)
-                                         .cornerRadius(12)
-                                 }
-                             }
-                         }
-                         .padding(.horizontal)
                      }
                  }
                  
