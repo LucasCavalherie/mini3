@@ -21,37 +21,37 @@ struct OrderView: View {
                          OrderStatusListView()
                              .padding(.vertical)
                          
-                         HStack {
-                             Text("Embalando")
-                                 .foregroundStyle(Color.secundaria)
-                                 .font(.title3)
-                                 .fontWeight(.bold)
-                             
-                             Spacer()
-                             
-                             Button {
-                                 
-                             } label: {
-                                 Image(systemName: "arrow.uturn.backward")
-                                     .foregroundStyle(.background)
-                                     .fontWeight(.bold)
-                                     .padding()
-                                     .background(Color.picoleDeGroselha)
-                                     .cornerRadius(12)
-                             }
-                             
-                             Button {
-                                 
-                             } label: {
-                                 Text("Avançar")
-                                     .foregroundStyle(.background)
-                                     .fontWeight(.bold)
-                                     .padding()
-                                     .background(Color.limaoTahiti)
-                                     .cornerRadius(12)
-                             }
-                         }
-                         .padding(.horizontal)
+//                         HStack {
+//                             Text("Embalando")
+//                                 .foregroundStyle(Color.secundaria)
+//                                 .font(.title3)
+//                                 .fontWeight(.bold)
+//                             
+//                             Spacer()
+//                             
+//                             Button {
+//                                 
+//                             } label: {
+//                                 Image(systemName: "arrow.uturn.backward")
+//                                     .foregroundStyle(.background)
+//                                     .fontWeight(.bold)
+//                                     .padding()
+//                                     .background(Color.picoleDeGroselha)
+//                                     .cornerRadius(12)
+//                             }
+//                             
+//                             Button {
+//                                 
+//                             } label: {
+//                                 Text("Avançar")
+//                                     .foregroundStyle(.background)
+//                                     .fontWeight(.bold)
+//                                     .padding()
+//                                     .background(Color.limaoTahiti)
+//                                     .cornerRadius(12)
+//                             }
+//                         }
+//                         .padding(.horizontal)
                      }
                  }
                  
