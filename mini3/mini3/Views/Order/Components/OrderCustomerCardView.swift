@@ -60,5 +60,5 @@ struct OrderCustomerCardView: View {
 }
 
 #Preview {
-    OrderCustomerCardView(order: OrderModel.create())
+    OrderCustomerCardView(order: OrderModel.create(isPaid: false))
 }

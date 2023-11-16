@@ -10,6 +10,7 @@ import Foundation
 struct ProductModel: Identifiable, Comparable, Codable {
     var id: UUID = UUID()
     var name: String
+    var imageName: String
     var observation: String?
     var priceBase: Float
     var createdAt: Date

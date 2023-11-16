@@ -136,9 +136,9 @@ class OrderViewModel: ObservableObject {
         let today = Date()
 
         return orders.filter { order in
-            let isToDoOrDoing = order.status == .toDo || order.status == .doing
+            let isStatusActive = order.status == .toDo || order.status == .doing || order.status == .packing || order.status == .toDeliver
             let isDeliveryToday = Calendar.current.isDate(order.deliveryDate, inSameDayAs: today)
-            return isToDoOrDoing && isDeliveryToday
+            return isStatusActive && isDeliveryToday
         }
     }
     
@@ -147,21 +147,21 @@ class OrderViewModel: ObservableObject {
         let sevenDaysLater = Calendar.current.date(byAdding: .day, value: 8, to: today)!
 
         return orders.filter { order in
-            let isToDoOrDoing = order.status == .toDo || order.status == .doing
+            let isStatusActive = order.status == .toDo || order.status == .doing || order.status == .packing || order.status == .toDeliver
             let isDeliveryNext7Days = today..<sevenDaysLater ~= order.deliveryDate
-            return isToDoOrDoing && isDeliveryNext7Days
+            return isStatusActive && isDeliveryNext7Days
         }
     }
     
     func listNext30DaysOrders() -> [OrderModel] {
         let today = Date()
-        let next7DaysLater = Calendar.current.date(byAdding: .day, value: 8, to: today)! // Início dos próximos 30 dias
+        let next7DaysLater = Calendar.current.date(byAdding: .day, value: 8, to: today)!
         let next30DaysLater = Calendar.current.date(byAdding: .day, value: 30, to: today)!
 
         return orders.filter { order in
-            let isToDoOrDoing = order.status == .toDo || order.status == .doing
+            let isStatusActive = order.status == .toDo || order.status == .doing || order.status == .packing || order.status == .toDeliver
             let isDeliveryNext30Days = next7DaysLater..<next30DaysLater ~= order.deliveryDate
-            return isToDoOrDoing && isDeliveryNext30Days
+            return isStatusActive && isDeliveryNext30Days
         }
     }
     

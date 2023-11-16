@@ -13,7 +13,7 @@ struct ProductListCardView: View {
     var body: some View {
         HStack {
             VStack {
-                Image("Sacola")
+                Image(product.imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(height: 45)
@@ -43,5 +43,5 @@ struct ProductListCardView: View {
 }
 
 #Preview {
-    ProductListCardView(product: ProductModel(name: "Produto", observation: "Obs", priceBase: 10, createdAt: Date.now))
+    ProductListCardView(product: ProductModel(name: "Produto", imageName: "IconeBrigadeiro", observation: "Obs", priceBase: 10, createdAt: Date.now))
 }

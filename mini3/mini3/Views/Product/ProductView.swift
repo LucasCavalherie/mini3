@@ -34,7 +34,7 @@ struct ProductView: View {
                     Spacer()
                     
                     VStack {
-                        Image("Sacola")
+                        Image(product.imageName)
                             .resizable()
                             .frame(width: 200, height: 200)
                     }
@@ -181,5 +181,5 @@ struct ProductView: View {
 }
 
 #Preview {
-    ProductView(product: ProductModel(name: "Bolo", observation: "Observacao", priceBase: 10, createdAt: Date.now))
+    ProductView(product: ProductModel(name: "Bolo", imageName: "IconeBrigadeiro", observation: "Observacao", priceBase: 10, createdAt: Date.now))
 }

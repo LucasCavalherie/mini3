@@ -26,10 +26,10 @@ struct TabsView: View {
                         Label("Pedidos", systemImage: "list.clipboard.fill")
                     }
                 
-//                DebugView()
-//                    .tabItem {
-//                        Label("Debug", systemImage: "xmark.circle.fill")
-//                    }
+                DebugView()
+                    .tabItem {
+                        Label("Debug", systemImage: "xmark.circle.fill")
+                    }
             }
         }
         .tint(.picoleDeGroselha)

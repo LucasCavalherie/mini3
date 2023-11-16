@@ -16,6 +16,9 @@ struct ProductCreateEditView: View {
     @State var observation = ""
     @Environment(\.dismiss) private var dismiss
     
+    @State private var selectedIcon: String = ""
+    let icons = ["IconeBeijinho", "IconeBiscoito", "IconeBolo", "IconeBoloInteiro", "IconeBrigadeiro", "IconeCookie", "IconeCupcake", "IconeEstrela"]
+    
     @ObservedObject var viewModel: ProductViewModel = ProductViewModel.shared
     
     var body: some View {
@@ -44,10 +47,20 @@ struct ProductCreateEditView: View {
                         .keyboardType(.decimalPad)
                 }
                 
-//                Section {
-//                    TextField("Ícone", text: $observation, axis: .vertical)
-//                        .padding(.bottom, 120)
-//                }
+                Section(header: Text("Selecione um ícone")) {
+                    LazyVGrid(columns: Array(repeating: GridItem(), count: 4), spacing: 10) {
+                        ForEach(icons, id: \.self) { icon in
+                            Image(icon)
+                                .resizable()
+                                .frame(width: 55, height: 55)
+                                .foregroundColor(selectedIcon == icon ? .blue : .black) // Muda a cor do ícone selecionado
+                                .border(selectedIcon == icon ? Color.blue : Color.clear, width: 2) // Adiciona uma borda ao ícone selecionado
+                                .onTapGesture {
+                                    selectedIcon = icon
+                                }
+                        }
+                    }
+                }
                 
                 Section {
                     TextField("Observação", text: $observation, axis: .vertical)
@@ -62,9 +75,9 @@ struct ProductCreateEditView: View {
             
             Button {
                 if let product = product {
-                    viewModel.editProduct(id: product.id, name: name, observation: observation, priceBase: value ?? 0)
+                    viewModel.editProduct(id: product.id, name: name, imageName: selectedIcon, observation: observation, priceBase: value ?? 0)
                 } else {
-                    viewModel.addProduct(name: name, observation: observation, priceBase: value ?? 0, createdAt: Date.now)
+                    viewModel.addProduct(name: name, imageName: selectedIcon, observation: observation, priceBase: value ?? 0, createdAt: Date.now)
                 }
                 
                 dismiss()

@@ -49,14 +49,15 @@ class ProductViewModel: ObservableObject {
         return products.firstIndex(where: { $0.id == id })
     }
     
-    func addProduct(name: String, observation: String?, priceBase: Float, createdAt: Date) {
-        products.append(ProductModel(name: name, observation: observation, priceBase: priceBase, createdAt: createdAt))
+    func addProduct(name: String, imageName: String, observation: String?, priceBase: Float, createdAt: Date) {
+        products.append(ProductModel(name: name, imageName: imageName, observation: observation, priceBase: priceBase, createdAt: createdAt))
         sortProducts()
     }
     
-    func editProduct(id: UUID, name: String, observation: String?, priceBase: Float) {
+    func editProduct(id: UUID, name: String, imageName: String, observation: String?, priceBase: Float) {
         if let index = getProductIndex(id: id) {
             products[index].name = name
+            products[index].imageName = imageName
             products[index].observation = observation
             products[index].priceBase = priceBase
         }
