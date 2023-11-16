@@ -23,6 +23,9 @@ struct OrderListView: View {
                     
                     HStack(alignment: .top) {
                         Image("LogoPave")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 50)
                         Spacer()
                         
                         Button() {
@@ -37,8 +40,10 @@ struct OrderListView: View {
                         }
                         
                     }
+
                     .padding(.horizontal, 32)
                 }
+                
                 Spacer()
                 
                 if viewModel.listTodayOrders().count == 0 && 
@@ -47,8 +52,10 @@ struct OrderListView: View {
                     VStack {
                         Spacer()
                         Image("Pavinho_Triste")
+                            .padding(16)
                         VStack {
-                            Text("Uh-oh")
+                            Text("Uh-oh!")
+                                .font(.title)
                             Text("Parece que não tem nenhum pedido")
                             Text("por aqui, que tal adicionar um novo?")
                         }
@@ -57,6 +64,7 @@ struct OrderListView: View {
                         .foregroundStyle(.picoleDeGroselha)
                         Spacer()
                     }
+                    .frame(maxHeight: 600)
                 } else {
                     ScrollView (showsIndicators: false) {
                         

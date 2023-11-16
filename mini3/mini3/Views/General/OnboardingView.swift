@@ -101,7 +101,11 @@ struct OnboardingView: View {
                     
                     HStack(alignment: .top) {
                         Button(action: {
-                            print("pular")
+                            // Increment to the next tab
+                            selected = 3
+                            if selected == 3 {
+                                viewModel.onboardingDone = true
+                            }
                         }, label: {
                             Text("Pular")
                                 .font(.headline)
@@ -115,11 +119,20 @@ struct OnboardingView: View {
                                 viewModel.onboardingDone = true
                             }
                         }, label: {
-                            Text("Próximo")
-                                .font(.headline)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.verdeMatcha)
+                            if selected == 2 {
+                                Text("Vamos lá!")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(.verdeMatcha)
+                            } else {
+                                Text("Próximo")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(.verdeMatcha)
+                            }
+                            
                         })
+                        .animation(.default, value: selected)
                     }
                     .padding(.horizontal, 32)
                 }
