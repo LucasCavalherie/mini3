@@ -64,6 +64,7 @@ class OrderViewModel: ObservableObject {
             orders[index].customer.name = customerName
             orders[index].customer.contact = customerContact
             orders[index].customer.contactForm = contactForm
+            currentOrder = orders[index]
         }
     }
     

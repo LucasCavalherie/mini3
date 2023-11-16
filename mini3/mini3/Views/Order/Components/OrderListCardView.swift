@@ -13,18 +13,21 @@ struct OrderListCardView: View {
     
     let getDay: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "pt_BR")
         formatter.dateFormat = "dd"
         return formatter
     }()
     
     let getWeekDay: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "pt_BR")
         formatter.dateFormat = "E"
         return formatter
     }()
     
     let getHour: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "pt_BR")
         formatter.dateFormat = "HH:mm"
         return formatter
     }()

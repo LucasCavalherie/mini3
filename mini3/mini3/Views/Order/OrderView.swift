@@ -17,6 +17,13 @@ struct OrderView: View {
     
     @ObservedObject var viewModel: OrderViewModel = OrderViewModel.shared
     
+    func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "pt_BR")
+        dateFormatter.setLocalizedDateFormatFromTemplate("E, d 'de' MMMM | HH:mm")
+        return dateFormatter.string(from: date)
+    }
+    
     func updateOrder() {
         order = viewModel.currentOrder!
     }
@@ -36,10 +43,30 @@ struct OrderView: View {
                  
                 VStack (alignment: .leading){
                     VStack (alignment: .leading) {
-                        Text("Itens do pedido")
-                            .foregroundStyle(Color.principal)
-                            .font(.callout)
-                            .fontWeight(.bold)
+                        
+                        HStack {
+                            Text("Itens do pedido")
+                                .foregroundStyle(Color.principal)
+                                .font(.callout)
+                                .fontWeight(.bold)
+                            
+                            Spacer()
+                            
+                            Button() {
+                                shouldPresentSheet.toggle()
+                            } label: {
+                                AddButtonView()
+                            }
+                            .sheet(isPresented: $shouldPresentSheet) {
+                                print("Sheet dismissed!")
+                                updateOrder()
+                            } content: {
+                                OrderCreateEditView(order: order)
+                            }
+                            
+                        }
+                        .padding(.horizontal)
+                        
                         
                         ForEach(order.orderItems) { orderItem in
                             OrderItemCardListView(orderItem: orderItem)
@@ -149,6 +176,7 @@ struct OrderView: View {
                             
                         
                     }
+                    .padding(.bottom)
                 }
                 .padding(.horizontal)
             }
@@ -174,7 +202,7 @@ struct OrderView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                     
-                    Text("Qua, 13 de outubro | 14:00")
+                    Text(formatDate(order.deliveryDate))
                         .foregroundStyle(Color.principal)
                         .font(.caption2)
                         .fontWeight(.bold)
@@ -194,6 +222,7 @@ struct OrderView: View {
                 }
                 .sheet(isPresented: $shouldPresentSheet) {
                     print("Sheet dismissed!")
+                    updateOrder()
                 } content: {
                     OrderCreateEditView(order: order)
                 }

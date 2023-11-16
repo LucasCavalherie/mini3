@@ -41,13 +41,15 @@ struct OrderListView: View {
                 }
                 Spacer()
                 
-                if viewModel.listTodayOrders().count == 0 && viewModel.listTodayOrders().count == 0 && viewModel.listTodayOrders().count == 0 {
+                if viewModel.listTodayOrders().count == 0 && 
+                    viewModel.listNext7DaysOrders().count == 0 &&
+                    viewModel.listNext30DaysOrders().count == 0 {
                     VStack {
                         Spacer()
                         Image("Pavinho_Triste")
                         VStack {
                             Text("Uh-oh")
-                            Text("Parece que não nenhum pedido")
+                            Text("Parece que não tem nenhum pedido")
                             Text("por aqui, que tal adicionar um novo?")
                         }
                         .font(.callout)

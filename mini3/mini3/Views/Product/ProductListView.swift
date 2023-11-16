@@ -47,7 +47,7 @@ struct ProductListView: View {
                         Image("Pavinho_Triste")
                         VStack {
                             Text("Uh-oh")
-                            Text("Parece que não nenhum produto")
+                            Text("Parece que não tem nenhum produto")
                             Text("por aqui, que tal adicionar um novo?")
                         }
                         .font(.callout)
