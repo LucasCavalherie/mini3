@@ -69,7 +69,7 @@ struct ProductView: View {
                                 
                                 Spacer()
                                 
-                                Text("102")
+                                Text("\(viewModel.getTotalSales(id: product.id))")
                                     .font(.title)
                                     .fontWeight(.heavy)
                                     .foregroundStyle(.geleiaDeMorango)

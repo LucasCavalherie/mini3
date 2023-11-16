@@ -79,12 +79,16 @@ class ProductViewModel: ObservableObject {
     
     func getTotalSales(id: UUID) -> Int {
         if getProduct(id: id) != nil {
-            let orders = OrderViewModel.shared.orders.filter{ order in
-                return order.status == .done && order.orderItems.filter{ orderItem in
-                    return orderItem.productId == id
-                }.count > 0
+            let orders = OrderViewModel.shared.orders.filter { order in
+                return order.status == .done && order.orderItems.contains(where: { $0.productId == id })
             }
-            return orders.count
+            
+            let totalQuantity = orders.reduce(0) { result, order in
+                let quantityForProduct = order.orderItems.filter { $0.productId == id }.map { $0.quantity }.reduce(0, +)
+                return result + quantityForProduct
+            }
+            
+            return totalQuantity
         }
         
         return 0
