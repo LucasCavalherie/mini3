@@ -10,17 +10,36 @@ import Foundation
 class OrderViewModel: ObservableObject {
     static let shared = OrderViewModel()
     
-    private init() {}
+    private init() {
+        loadOrders()
+    }
     
-    let sharedUserDefaults = UserDefaults()
-    let orderKey = "order"
-    
-    @Published var orders : [OrderModel] = [
-        OrderModel.create(orderName: "Pedido 1", deliveryDate: Date.now, status: .toDo), 
-        OrderModel.create(orderName: "Pedido 2", deliveryDate: Calendar.current.date(byAdding: .day, value: 1, to: Date.now)!, status: .toDo),
-        OrderModel.create(orderName: "Pedido 3", deliveryDate: Calendar.current.date(byAdding: .day, value: 9, to: Date.now)!, status: .toDo)
-    ]
+    @Published var orders : [OrderModel] = [] { didSet { saveOrders() } }
     @Published var currentOrder : OrderModel?
+    
+    // Saving Data
+    let sharedUserDefaults = UserDefaults.standard
+    let orderKey = "order"
+
+    private func loadOrders() {
+        if let data = sharedUserDefaults.data(forKey: orderKey),
+           let decodedOrders = try? JSONDecoder().decode([OrderModel].self, from: data) {
+            orders = decodedOrders
+        }
+    }
+
+    private func saveOrders() {
+        if let encodedOrders = try? JSONEncoder().encode(orders) {
+            sharedUserDefaults.set(encodedOrders, forKey: orderKey)
+        }
+    }
+    
+    func clearOrders() {
+        sharedUserDefaults.removeObject(forKey: orderKey)
+        orders = []
+    }
+    
+    // Functions
     
     func getOrderIndex(id: UUID) -> Int? {
         return orders.firstIndex(where: { $0.id == id })
@@ -45,6 +64,7 @@ class OrderViewModel: ObservableObject {
             orders[index].customer.name = customerName
             orders[index].customer.contact = customerContact
             orders[index].customer.contactForm = contactForm
+            currentOrder = orders[index]
         }
     }
     
@@ -72,6 +92,8 @@ class OrderViewModel: ObservableObject {
         let id = currentOrder!.id
         switch currentOrder!.status {
             case .done:
+                changeStatus(id: id, status: .toDeliver)
+            case .toDeliver:
                 changeStatus(id: id, status: .packing)
             case .packing:
                 changeStatus(id: id, status: .doing)
@@ -90,6 +112,8 @@ class OrderViewModel: ObservableObject {
             case .doing:
                 changeStatus(id: id, status: .packing)
             case .packing:
+                changeStatus(id: id, status: .toDeliver)
+            case .toDeliver:
                 changeStatus(id: id, status: .done)
             default:
                 break
@@ -112,9 +136,9 @@ class OrderViewModel: ObservableObject {
         let today = Date()
 
         return orders.filter { order in
-            let isToDoOrDoing = order.status == .toDo || order.status == .doing
+            let isStatusActive = order.status == .toDo || order.status == .doing || order.status == .packing || order.status == .toDeliver
             let isDeliveryToday = Calendar.current.isDate(order.deliveryDate, inSameDayAs: today)
-            return isToDoOrDoing && isDeliveryToday
+            return isStatusActive && isDeliveryToday
         }
     }
     
@@ -123,46 +147,32 @@ class OrderViewModel: ObservableObject {
         let sevenDaysLater = Calendar.current.date(byAdding: .day, value: 8, to: today)!
 
         return orders.filter { order in
-            let isToDoOrDoing = order.status == .toDo || order.status == .doing
+            let isStatusActive = order.status == .toDo || order.status == .doing || order.status == .packing || order.status == .toDeliver
             let isDeliveryNext7Days = today..<sevenDaysLater ~= order.deliveryDate
-            return isToDoOrDoing && isDeliveryNext7Days
+            return isStatusActive && isDeliveryNext7Days
         }
     }
     
     func listNext30DaysOrders() -> [OrderModel] {
         let today = Date()
-        let next7DaysLater = Calendar.current.date(byAdding: .day, value: 8, to: today)! // Início dos próximos 30 dias
+        let next7DaysLater = Calendar.current.date(byAdding: .day, value: 8, to: today)!
         let next30DaysLater = Calendar.current.date(byAdding: .day, value: 30, to: today)!
 
         return orders.filter { order in
-            let isToDoOrDoing = order.status == .toDo || order.status == .doing
+            let isStatusActive = order.status == .toDo || order.status == .doing || order.status == .packing || order.status == .toDeliver
             let isDeliveryNext30Days = next7DaysLater..<next30DaysLater ~= order.deliveryDate
-            return isToDoOrDoing && isDeliveryNext30Days
+            return isStatusActive && isDeliveryNext30Days
         }
     }
     
     func sortOrdersByStatus(_ orders: [OrderModel]) -> [OrderModel] {
         return orders.sorted { (order1, order2) in
-            let statusOrder1 = order1.status
-            let statusOrder2 = order2.status
-
             // Obtém a ordem numérica do enum para comparar
-            let orderValueOrder1 = getOrderStatusValue(statusOrder1)
-            let orderValueOrder2 = getOrderStatusValue(statusOrder2)
+            let orderValueOrder1 = order1.getStatusValue()
+            let orderValueOrder2 = order2.getStatusValue()
 
             // Ordena com base nas ordens numéricas obtidas
             return orderValueOrder1 < orderValueOrder2
-        }
-    }
-
-    func getOrderStatusValue(_ status: OrderStatus) -> Int {
-        switch status {
-            case .toDo: return 0
-            case .doing: return 1
-            case .packing: return 2
-            case .done: return 3
-            case .toDeliver: return 4
-            case .canceled: return 5
         }
     }
     

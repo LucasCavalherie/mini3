@@ -15,6 +15,7 @@ struct iOSCheckboxToggleStyle: ToggleStyle {
             HStack {
                 Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
                     .foregroundStyle(Color.geleiaDeMorango)
+                    .font(.title)
                 configuration.label
             }
         })

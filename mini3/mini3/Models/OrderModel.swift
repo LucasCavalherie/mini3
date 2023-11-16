@@ -8,16 +8,16 @@
 import Foundation
 import SwiftUI
 
-enum OrderStatus {
+enum OrderStatus: Codable {
     case toDo
     case doing
     case packing
-    case done
     case toDeliver
+    case done
     case canceled
 }
 
-struct OrderModel: Identifiable {
+struct OrderModel: Identifiable, Codable {
     var id: UUID = UUID()
     var orderName: String
     var deliveryDate: Date
@@ -36,10 +36,10 @@ struct OrderModel: Identifiable {
                 return "Fazendo"
             case .packing:
                 return "Embalando"
-            case .done:
-                return "Feito"
             case .toDeliver:
                 return "A Entregar"
+            case .done:
+                return "Feito"
             case .canceled:
                 return "Cancelado"
         }
@@ -53,12 +53,40 @@ struct OrderModel: Identifiable {
                 return .amareloGema
             case .packing:
                 return .geleiaDeMorango
-            case .done:
-                return .limaoTahiti
             case .toDeliver:
                 return .verdeMatcha
+            case .done:
+                return .limaoTahiti
             case .canceled:
                 return .picoleDeGroselha
+        }
+    }
+    
+    func getSecondaryStatusColor() -> Color {
+        switch status {
+            case .toDo:
+                return .chocolateAoLeite
+            case .doing:
+                return .cascaDeOvo
+            case .packing:
+                return .musseDeMorango
+            case .toDeliver:
+                return .matchaLatte
+            case .done:
+                return .limonada
+            case .canceled:
+                return .geleiaDeMorango
+        }
+    }
+    
+    func getStatusValue() -> Int {
+        switch status {
+            case .toDo: return 0
+            case .doing: return 1
+            case .packing: return 2
+            case .toDeliver: return 3
+            case .done: return 4
+            case .canceled: return 5
         }
     }
 }

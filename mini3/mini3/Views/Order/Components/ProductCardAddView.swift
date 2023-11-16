@@ -50,5 +50,5 @@ struct ProductCardAddView: View {
 }
 
 #Preview {
-    ProductCardAddView(product: ProductModel(name: "", priceBase: 10, createdAt: Date.now))
+    ProductCardAddView(product: ProductModel(name: "", imageName: "IconeBrigadeiro", priceBase: 10, createdAt: Date.now))
 }

@@ -51,10 +51,10 @@ struct OrderCreateEditView: View {
                 }
                 
                 Section {
-                    TextField("Observação...", text: $observation)
+                    TextField("Observação...", text: $observation, axis: .vertical)
                 }
             }
-            .frame(height: 175)
+            .frame(height: 275)
             .padding(.horizontal)
             .scrollContentBackground(.hidden)
             .background(.algodaoDoce)

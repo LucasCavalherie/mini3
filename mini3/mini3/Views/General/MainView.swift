@@ -8,30 +8,27 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject var viewModel: MainViewModel = MainViewModel.shared
+    
+    @State private var showFirstScreen = true
+    
     var body: some View {
-        TabView {
-            Group {
-                OrderListView()
-                    .tabItem {
-                        Label("Agenda", systemImage: "calendar")
-                    }
-                
-                ProductListView()
-                    .tabItem {
-                        Label("Produtos", systemImage: "birthday.cake")
-                    }
-                
-                OrderListDoneView()
-                    .tabItem {
-                        Label("Pedidos", systemImage: "list.clipboard.fill")
-                    }
+        if showFirstScreen {
+            SplashView().onAppear { changeScreen() }
+        } else {
+            if viewModel.onboardingDone {
+                TabsView()
+            } else {
+                OnboardingView()
             }
         }
-        .tint(.picoleDeGroselha)
-        .onAppear {
-            let tabBarAppearance = UITabBarAppearance()
-            tabBarAppearance.configureWithDefaultBackground()
-            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+    }
+    
+    func changeScreen() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            withAnimation {
+                showFirstScreen = false
+            }
         }
     }
 }

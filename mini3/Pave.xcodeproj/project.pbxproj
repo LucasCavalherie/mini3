@@ -10,6 +10,11 @@
 		73045DDE2AF2BD6A00ABA07D /* OrderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73045DDD2AF2BD6A00ABA07D /* OrderViewTests.swift */; };
 		73046E232AF956DA0035D54C /* OrderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73046E222AF956DA0035D54C /* OrderExtension.swift */; };
 		7321DDFA2AFEA692004C45D5 /* OrderAddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7321DDF92AFEA692004C45D5 /* OrderAddItemView.swift */; };
+		735AEDF62B0557C100DD2775 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735AEDF52B0557C100DD2775 /* OnboardingView.swift */; };
+		735AEDF82B05594200DD2775 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735AEDF72B05594200DD2775 /* MainViewModel.swift */; };
+		735AEDFA2B05626200DD2775 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735AEDF92B05626200DD2775 /* DebugView.swift */; };
+		735AEDFC2B057A0200DD2775 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735AEDFB2B057A0200DD2775 /* SplashView.swift */; };
+		735AEDFE2B057B1A00DD2775 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735AEDFD2B057B1A00DD2775 /* TabsView.swift */; };
 		73643DDD2AFAB15200207821 /* ProductCreateEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73643DDC2AFAB15200207821 /* ProductCreateEditView.swift */; };
 		73643DDF2AFAB1AB00207821 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73643DDE2AFAB1AB00207821 /* ProductView.swift */; };
 		73643DE22AFAB22F00207821 /* ProductListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73643DE12AFAB22F00207821 /* ProductListCardView.swift */; };
@@ -52,10 +57,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		73045DDB2AF2BD6A00ABA07D /* mini3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mini3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73045DDB2AF2BD6A00ABA07D /* PaveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73045DDD2AF2BD6A00ABA07D /* OrderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewTests.swift; sourceTree = "<group>"; };
 		73046E222AF956DA0035D54C /* OrderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderExtension.swift; sourceTree = "<group>"; };
 		7321DDF92AFEA692004C45D5 /* OrderAddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAddItemView.swift; sourceTree = "<group>"; };
+		735AEDF52B0557C100DD2775 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		735AEDF72B05594200DD2775 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		735AEDF92B05626200DD2775 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		735AEDFB2B057A0200DD2775 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		735AEDFD2B057B1A00DD2775 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		73643DDC2AFAB15200207821 /* ProductCreateEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCreateEditView.swift; sourceTree = "<group>"; };
 		73643DDE2AFAB1AB00207821 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		73643DE12AFAB22F00207821 /* ProductListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCardView.swift; sourceTree = "<group>"; };
@@ -70,7 +80,7 @@
 		73643DF52AFAB7A500207821 /* CloseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonView.swift; sourceTree = "<group>"; };
 		73643DF72AFAB7B300207821 /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
 		73643DF92AFABF1800207821 /* OrderListDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListDoneView.swift; sourceTree = "<group>"; };
-		73664F022AEC31FB00781AE0 /* mini3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mini3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		73664F022AEC31FB00781AE0 /* Pave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73664F052AEC31FB00781AE0 /* mini3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mini3App.swift; sourceTree = "<group>"; };
 		73664F072AEC31FB00781AE0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		73664F092AEC31FC00781AE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,6 +160,10 @@
 			children = (
 				73643DF42AFAB76A00207821 /* Components */,
 				73664F072AEC31FB00781AE0 /* MainView.swift */,
+				735AEDF52B0557C100DD2775 /* OnboardingView.swift */,
+				735AEDF92B05626200DD2775 /* DebugView.swift */,
+				735AEDFB2B057A0200DD2775 /* SplashView.swift */,
+				735AEDFD2B057B1A00DD2775 /* TabsView.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -175,8 +189,8 @@
 		73664F032AEC31FB00781AE0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				73664F022AEC31FB00781AE0 /* mini3.app */,
-				73045DDB2AF2BD6A00ABA07D /* mini3Tests.xctest */,
+				73664F022AEC31FB00781AE0 /* Pave.app */,
+				73045DDB2AF2BD6A00ABA07D /* PaveTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -230,6 +244,7 @@
 				73664F282AF03F2000781AE0 /* OrderViewModel.swift */,
 				73664F2A2AF03F3500781AE0 /* ProductViewModel.swift */,
 				737710EE2AF17A4900A80C10 /* OrderItemViewModel.swift */,
+				735AEDF72B05594200DD2775 /* MainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -269,9 +284,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		73045DDA2AF2BD6A00ABA07D /* mini3Tests */ = {
+		73045DDA2AF2BD6A00ABA07D /* PaveTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 73045DE32AF2BD6A00ABA07D /* Build configuration list for PBXNativeTarget "mini3Tests" */;
+			buildConfigurationList = 73045DE32AF2BD6A00ABA07D /* Build configuration list for PBXNativeTarget "PaveTests" */;
 			buildPhases = (
 				73045DD72AF2BD6A00ABA07D /* Sources */,
 				73045DD82AF2BD6A00ABA07D /* Frameworks */,
@@ -282,14 +297,14 @@
 			dependencies = (
 				73045DE02AF2BD6A00ABA07D /* PBXTargetDependency */,
 			);
-			name = mini3Tests;
+			name = PaveTests;
 			productName = mini3Tests;
-			productReference = 73045DDB2AF2BD6A00ABA07D /* mini3Tests.xctest */;
+			productReference = 73045DDB2AF2BD6A00ABA07D /* PaveTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		73664F012AEC31FB00781AE0 /* mini3 */ = {
+		73664F012AEC31FB00781AE0 /* Pave */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 73664F102AEC31FC00781AE0 /* Build configuration list for PBXNativeTarget "mini3" */;
+			buildConfigurationList = 73664F102AEC31FC00781AE0 /* Build configuration list for PBXNativeTarget "Pave" */;
 			buildPhases = (
 				73664EFE2AEC31FB00781AE0 /* Sources */,
 				73664EFF2AEC31FB00781AE0 /* Frameworks */,
@@ -299,9 +314,9 @@
 			);
 			dependencies = (
 			);
-			name = mini3;
+			name = Pave;
 			productName = mini3;
-			productReference = 73664F022AEC31FB00781AE0 /* mini3.app */;
+			productReference = 73664F022AEC31FB00781AE0 /* Pave.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -323,7 +338,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 73664EFD2AEC31FB00781AE0 /* Build configuration list for PBXProject "mini3" */;
+			buildConfigurationList = 73664EFD2AEC31FB00781AE0 /* Build configuration list for PBXProject "Pave" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -336,8 +351,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				73664F012AEC31FB00781AE0 /* mini3 */,
-				73045DDA2AF2BD6A00ABA07D /* mini3Tests */,
+				73664F012AEC31FB00781AE0 /* Pave */,
+				73045DDA2AF2BD6A00ABA07D /* PaveTests */,
 			);
 		};
 /* End PBXProject section */
@@ -377,6 +392,7 @@
 				73643DEE2AFAB65F00207821 /* ProductCardAddView.swift in Sources */,
 				73664F082AEC31FB00781AE0 /* MainView.swift in Sources */,
 				73643DE42AFAB29600207821 /* ProductListIconsView.swift in Sources */,
+				735AEDF62B0557C100DD2775 /* OnboardingView.swift in Sources */,
 				73664F062AEC31FB00781AE0 /* mini3App.swift in Sources */,
 				73664F212AEC4F0100781AE0 /* ProductListView.swift in Sources */,
 				73643DEA2AFAB47F00207821 /* OrderItemCardListView.swift in Sources */,
@@ -385,6 +401,7 @@
 				7321DDFA2AFEA692004C45D5 /* OrderAddItemView.swift in Sources */,
 				73643DE82AFAB38B00207821 /* OrderCustomerCardView.swift in Sources */,
 				73664F1C2AEC4E1800781AE0 /* OrderModel.swift in Sources */,
+				735AEDFA2B05626200DD2775 /* DebugView.swift in Sources */,
 				73664F182AEC4DB900781AE0 /* OrderListView.swift in Sources */,
 				73643DE22AFAB22F00207821 /* ProductListCardView.swift in Sources */,
 				73643DF02AFAB69500207821 /* OrderView.swift in Sources */,
@@ -395,14 +412,17 @@
 				73046E232AF956DA0035D54C /* OrderExtension.swift in Sources */,
 				73643DE62AFAB31800207821 /* OrderStatusListView.swift in Sources */,
 				73643DFA2AFABF1800207821 /* OrderListDoneView.swift in Sources */,
+				735AEDFC2B057A0200DD2775 /* SplashView.swift in Sources */,
 				73664F1E2AEC4E7E00781AE0 /* ProductModel.swift in Sources */,
 				73643DDF2AFAB1AB00207821 /* ProductView.swift in Sources */,
 				73664F292AF03F2000781AE0 /* OrderViewModel.swift in Sources */,
 				738585692AFC5BF800A11432 /* ColorExtension.swift in Sources */,
+				735AEDFE2B057B1A00DD2775 /* TabsView.swift in Sources */,
 				73664F272AF035CA00781AE0 /* CustomerModel.swift in Sources */,
 				73643DF22AFAB6BE00207821 /* OrderCreateEditView.swift in Sources */,
 				737710EF2AF17A4900A80C10 /* OrderItemViewModel.swift in Sources */,
 				73664F1A2AEC4DCB00781AE0 /* OrderListCardView.swift in Sources */,
+				735AEDF82B05594200DD2775 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +431,7 @@
 /* Begin PBXTargetDependency section */
 		73045DE02AF2BD6A00ABA07D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 73664F012AEC31FB00781AE0 /* mini3 */;
+			target = 73664F012AEC31FB00781AE0 /* Pave */;
 			targetProxy = 73045DDF2AF2BD6A00ABA07D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -431,7 +451,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mini3.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/mini3";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pave.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pave";
 			};
 			name = Debug;
 		};
@@ -449,7 +469,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mini3.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/mini3";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pave.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pave";
 			};
 			name = Release;
 		};
@@ -578,7 +598,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"mini3/Preview Content\"";
 				DEVELOPMENT_TEAM = 4X6L65DYQU;
 				ENABLE_PREVIEWS = YES;
@@ -594,7 +614,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = appledeveloperacademy.mini3;
+				PRODUCT_BUNDLE_IDENTIFIER = appledeveloperacademy.pave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -608,7 +628,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"mini3/Preview Content\"";
 				DEVELOPMENT_TEAM = 4X6L65DYQU;
 				ENABLE_PREVIEWS = YES;
@@ -624,7 +644,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = appledeveloperacademy.mini3;
+				PRODUCT_BUNDLE_IDENTIFIER = appledeveloperacademy.pave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -635,7 +655,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		73045DE32AF2BD6A00ABA07D /* Build configuration list for PBXNativeTarget "mini3Tests" */ = {
+		73045DE32AF2BD6A00ABA07D /* Build configuration list for PBXNativeTarget "PaveTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				73045DE12AF2BD6A00ABA07D /* Debug */,
@@ -644,7 +664,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		73664EFD2AEC31FB00781AE0 /* Build configuration list for PBXProject "mini3" */ = {
+		73664EFD2AEC31FB00781AE0 /* Build configuration list for PBXProject "Pave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				73664F0E2AEC31FC00781AE0 /* Debug */,
@@ -653,7 +673,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		73664F102AEC31FC00781AE0 /* Build configuration list for PBXNativeTarget "mini3" */ = {
+		73664F102AEC31FC00781AE0 /* Build configuration list for PBXNativeTarget "Pave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				73664F112AEC31FC00781AE0 /* Debug */,
