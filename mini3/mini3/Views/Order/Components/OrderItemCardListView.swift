@@ -23,10 +23,10 @@ struct iOSCheckboxToggleStyle: ToggleStyle {
 }
 
 struct OrderItemCardListView: View {
-    @State private var isOn = false
-    var orderItem : OrderItemModel
+    @State var orderItem : OrderItemModel
     
     @ObservedObject var viewModel: ProductViewModel = ProductViewModel.shared
+    @ObservedObject var orderViewModel: OrderViewModel = OrderViewModel.shared
     
     var body: some View {
         HStack {
@@ -44,16 +44,19 @@ struct OrderItemCardListView: View {
             
             Spacer()
             
-            Toggle(isOn: $isOn){}
+            Toggle(isOn: $orderItem.done){}
                 .toggleStyle(iOSCheckboxToggleStyle())
         }
         .padding(.trailing)
         .background(Color.brancoNeve)
         .cornerRadius(8)
         .padding(.horizontal)
+        .onChange(of: orderItem.done) { _, done in
+            orderViewModel.orderItemDone(id: orderItem.id, done: orderItem.done)
+        }
     }
 }
 
 #Preview {
-    OrderItemCardListView(orderItem: OrderItemModel(productId: UUID(), quantity: 10))
+    OrderItemCardListView(orderItem: OrderItemModel(productId: UUID(), quantity: 10, done: true))
 }
