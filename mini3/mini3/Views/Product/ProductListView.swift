@@ -23,6 +23,7 @@ struct ProductListView: View {
                     HStack(alignment: .top) {
                         Image("produtos")
                             .resizable()
+                            .scaledToFit()
                             .frame(width: 150, height: 50)
                         Spacer()
                         
@@ -41,20 +42,25 @@ struct ProductListView: View {
                     .padding(.horizontal, 32)
                 }
                 
+                Spacer()
+                
                 if viewModel.listProducts().count == 0 {
                     VStack {
                         Spacer()
                         Image("Pavinho_Triste")
+                            .padding(16)
                         VStack {
-                            Text("Uh-oh")
-                            Text("Parece que não tem nenhum produto")
-                            Text("por aqui, que tal adicionar um novo?")
+                            Text("Uh-oh!")
+                                .font(.title)
+                            Text("Parece que você ainda não tem nenhum")
+                            Text("produto, que tal adicionar o primeiro?")
                         }
                         .font(.callout)
                         .fontWeight(.bold)
                         .foregroundStyle(.picoleDeGroselha)
                         Spacer()
                     }
+                    .frame(maxHeight: 600)
                 } else {
                     VStack(spacing: 8){
                         

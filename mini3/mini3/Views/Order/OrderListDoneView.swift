@@ -40,13 +40,17 @@ struct OrderListDoneView: View {
                     .padding(.horizontal, 32)
                 }
                 
+                Spacer()
+                
                 if viewModel.listAllOrders().count == 0 {
                     VStack {
                         Spacer()
                         Image("Pavinho_Triste")
+                            .padding(16)
                         VStack {
-                            Text("Uh-oh")
-                            Text("Parece que não nenhum pedido")
+                            Text("Uh-oh!")
+                                .font(.title)
+                            Text("Parece que não tem nenhum pedido")
                             Text("por aqui, que tal adicionar um novo?")
                         }
                         .font(.callout)
@@ -54,6 +58,7 @@ struct OrderListDoneView: View {
                         .foregroundStyle(.picoleDeGroselha)
                         Spacer()
                     }
+                    .frame(maxHeight: 600)
                 } else {
                     VStack(spacing: 8){
                         
