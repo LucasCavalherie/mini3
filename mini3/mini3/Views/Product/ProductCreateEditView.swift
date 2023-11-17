@@ -38,7 +38,7 @@ struct ProductCreateEditView: View {
                 }
             }
             .padding(.top, 32)
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 20)
             
             Form {
                 Section {
@@ -48,11 +48,11 @@ struct ProductCreateEditView: View {
                 }
                 
                 Section(header: Text("Selecione um ícone")) {
-                    LazyVGrid(columns: Array(repeating: GridItem(), count: 4), spacing: 10) {
+                    LazyVGrid(columns: Array(repeating: GridItem(), count: 4), spacing: 12) {
                         ForEach(icons, id: \.self) { icon in
                             Image(icon)
                                 .resizable()
-                                .frame(width: 55, height: 55)
+                                .frame(width: 60, height: 60)
                                 .foregroundColor(selectedIcon == icon ? .blue : .black) // Muda a cor do ícone selecionado
                                 .border(selectedIcon == icon ? Color.blue : Color.clear, width: 2) // Adiciona uma borda ao ícone selecionado
                                 .onTapGesture {
@@ -60,6 +60,7 @@ struct ProductCreateEditView: View {
                                 }
                         }
                     }
+                    .padding(.vertical, 8)
                 }
                 
                 Section {
