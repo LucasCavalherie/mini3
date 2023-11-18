@@ -7,10 +7,33 @@
 
 import SwiftUI
 
+enum ProductSort {
+    case nameAsc
+    case nameDesc
+    case createdDateAsc
+    case createdDateDesc
+}
+
 struct ProductListView: View {
     @State var shouldPresentSheet = false
     
+    @State var sort : ProductSort = .nameAsc
+    
     @ObservedObject var viewModel: ProductViewModel = ProductViewModel.shared
+    @State var products : [ProductModel] = []
+    
+    func applySort() {
+        switch sort {
+            case .nameAsc:
+                products.sort{$0.name < $1.name}
+            case .nameDesc:
+                products.sort{$0.name > $1.name}
+            case .createdDateAsc:
+                products.sort{$0.createdAt < $1.createdAt}
+            case .createdDateDesc:
+                products.sort{$0.createdAt > $1.createdAt}
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -44,7 +67,7 @@ struct ProductListView: View {
                 
                 Spacer()
                 
-                if viewModel.listProducts().count == 0 {
+                if products.count == 0 {
                     VStack {
                         Spacer()
                         Image("Pavinho_Triste")
@@ -72,24 +95,37 @@ struct ProductListView: View {
                             
                             Spacer()
                             
-                            Button(action: {
-                                print("sort ascendente/descendente")
-                            }, label: {
-                                Image(systemName: "arrow.up.arrow.down.square")
-                                    .foregroundStyle(Color("principal"))
-                            })
-                            
-                            Button(action: {
-                                print("sort entrega, criaçao e nome")
-                            }, label: {
-                                Image(systemName: "line.3.horizontal.decrease.circle")
-                                    .foregroundStyle(Color("principal"))
-                            })
+                            Menu {
+                                Button {
+                                    sort = .nameAsc
+                                } label: {
+                                    Text("Nome (Crescente)")
+                                }
+                                Button {
+                                    sort = .nameDesc
+                                } label: {
+                                    Text("Nome (Decrescente)")
+                                }
+                                Button {
+                                    sort = .createdDateAsc
+                                } label: {
+                                    Text("Data de criação (Crescente)")
+                                }
+                                Button {
+                                    sort = .createdDateDesc
+                                } label: {
+                                    Text("Data de criação (Decrescente)")
+                                }
+                            } label: {
+                                Image(systemName: "arrow.up.arrow.down.square.fill")
+                                    .font(.title3)
+                                    .foregroundStyle(.verdeMatcha)
+                            }
                         }
                         
                         ScrollView (showsIndicators: false){
                             VStack {
-                                ForEach (viewModel.listProducts()) { product in
+                                ForEach (products) { product in
                                     NavigationLink {
                                         ProductView(product: product)
                                     } label: {
@@ -106,6 +142,13 @@ struct ProductListView: View {
                 
             }
             .background(Color.algodaoDoce.edgesIgnoringSafeArea(.bottom))
+            .onAppear {
+                products = viewModel.listProducts()
+                applySort()
+            }
+            .onChange(of: sort) { _, _ in
+                applySort()
+            }
         }
     }
 }

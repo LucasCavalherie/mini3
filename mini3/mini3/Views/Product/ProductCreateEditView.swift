@@ -17,7 +17,8 @@ struct ProductCreateEditView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var selectedIcon: String = ""
-    let icons = ["IconeBeijinho", "IconeBiscoito", "IconeBolo", "IconeBoloInteiro", "IconeBrigadeiro", "IconeCookie", "IconeCupcake", "IconeEstrela"]
+    let icons = ["IconeBeijinho", "IconeEstrela", "IconeCupcake", "IconeCookie", "IconeBolo", "IconeBiscoito", "IconeBoloInteiro", "IconeBrigadeiro"]
+    let iconColors = [Color.limaoTahiti, Color.boloDePedreiro, Color.limonada, Color.picoleDeGroselha, Color.geleiaDeMorango, Color.verdeMatcha, Color.amareloGema, Color.musseDeMorango]
     
     @ObservedObject var viewModel: ProductViewModel = ProductViewModel.shared
     
@@ -38,7 +39,7 @@ struct ProductCreateEditView: View {
                 }
             }
             .padding(.top, 32)
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 20)
             
             Form {
                 Section {
@@ -48,18 +49,21 @@ struct ProductCreateEditView: View {
                 }
                 
                 Section(header: Text("Selecione um ícone")) {
-                    LazyVGrid(columns: Array(repeating: GridItem(), count: 4), spacing: 10) {
-                        ForEach(icons, id: \.self) { icon in
+                    LazyVGrid(columns: Array(repeating: GridItem(), count: 4), spacing: 12) {
+                        ForEach(Array(icons.enumerated()), id: \.element) { index, icon in
                             Image(icon)
                                 .resizable()
-                                .frame(width: 55, height: 55)
-                                .foregroundColor(selectedIcon == icon ? .blue : .black) // Muda a cor do ícone selecionado
-                                .border(selectedIcon == icon ? Color.blue : Color.clear, width: 2) // Adiciona uma borda ao ícone selecionado
+                                .frame(width: 60, height: 60)
+                                .background(iconColors[index])
+                                .cornerRadius(12)
+                                .foregroundColor(selectedIcon == icon ? .blue : .black)
+                                .border(selectedIcon == icon ? Color.blue : Color.clear, width: 2)
                                 .onTapGesture {
                                     selectedIcon = icon
                                 }
                         }
                     }
+                    .padding(.vertical, 8)
                 }
                 
                 Section {
@@ -75,7 +79,8 @@ struct ProductCreateEditView: View {
             
             Button {
                 if let product = product {
-                    viewModel.editProduct(id: product.id, name: name, imageName: selectedIcon, observation: observation, priceBase: value ?? 0)
+                    var icon = selectedIcon == "" ? product.imageName : selectedIcon
+                    viewModel.editProduct(id: product.id, name: name, imageName: icon, observation: observation, priceBase: value ?? 0)
                 } else {
                     viewModel.addProduct(name: name, imageName: selectedIcon, observation: observation, priceBase: value ?? 0, createdAt: Date.now)
                 }

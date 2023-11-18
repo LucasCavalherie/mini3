@@ -16,10 +16,10 @@ struct ProductListCardView: View {
                 Image(product.imageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 45)
+                    .frame(height: 60)
             }
             .foregroundStyle(.background)
-            .padding()
+            .padding(8)
             .background(Color.geleiaDeMorango)
             
             VStack (alignment: .leading) {

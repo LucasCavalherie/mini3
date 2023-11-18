@@ -55,7 +55,7 @@ struct OrderCreateEditView: View {
                 }
             }
             .frame(height: 275)
-            .padding(.horizontal)
+            .padding(.horizontal, 12)
             .scrollContentBackground(.hidden)
             .background(.algodaoDoce)
             .formStyle(.grouped)

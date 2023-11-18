@@ -68,6 +68,17 @@ class OrderViewModel: ObservableObject {
         }
     }
     
+    func orderItemDone(id: UUID, done: Bool) {
+        if var currentOrder = currentOrder {
+            if let orderItemIndex = currentOrder.orderItems.firstIndex(where: { $0.id == id }) {
+                currentOrder.orderItems[orderItemIndex].done = done
+                if let index = getOrderIndex(id: currentOrder.id) {
+                    orders[index].orderItems[orderItemIndex].done = done
+                }
+            }
+        }
+    }
+    
     func removeOrder(id: UUID) {
         if let index = getOrderIndex(id: id) {
             orders.remove(at: index)
