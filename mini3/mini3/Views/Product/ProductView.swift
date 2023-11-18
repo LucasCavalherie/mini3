@@ -36,7 +36,7 @@ struct ProductView: View {
                     VStack {
                         Image(product.imageName)
                             .resizable()
-                            .frame(width: 200, height: 200)
+                            .frame(width: 250, height: 250)
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.bottom)
