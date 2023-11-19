@@ -53,10 +53,14 @@ struct ProductCreateEditView: View {
                             Image(icon)
                                 .resizable()
                                 .frame(width: 55, height: 55)
-                                .foregroundColor(selectedIcon == icon ? .blue : .black) // Muda a cor do ícone selecionado
-                                .border(selectedIcon == icon ? Color.blue : Color.clear, width: 2) // Adiciona uma borda ao ícone selecionado
+                                .foregroundColor(selectedIcon == icon ? .blue : .black)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10) // Adjust the corner radius as needed
+                                        .stroke(selectedIcon == icon ? Color.matchaLatte : Color.clear, lineWidth: 4)
+                                )
                                 .onTapGesture {
                                     selectedIcon = icon
+                                
                                 }
                         }
                     }
