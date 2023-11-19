@@ -16,42 +16,48 @@ struct OrderStatusListView: View {
     var body: some View {
         VStack {
             if currentPosition < 5 {
-                ZStack {
-                    
-                    Rectangle()
-                        .frame(maxWidth: .infinity, maxHeight: 12)
-                        .foregroundStyle(order.getSecondaryStatusColor())
-                        .opacity(0.5)
-                        .padding(.horizontal, 32)
-                        .animation(.default, value: currentPosition)
-                    
-                    HStack(spacing: 25) {
-                        ForEach(0..<5) { index in
-                            ZStack {
-                                if index == currentPosition {
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .frame(width: 64, height: 64)
-                                        .foregroundStyle(order.getStatusColor())
-                                        .zIndex(0)
-                                        .animation(.smooth, value: currentPosition)
-                                    
-                                    Image("Status_\(index + 1)")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                                        .zIndex(1)
-                                        .animation(.smooth, value: currentPosition)
-                                } else {
-                                    Circle()
-                                        .frame(width: 42)
-                                        .foregroundStyle(order.getSecondaryStatusColor())
-                                        .zIndex(0)
-                                        .animation(.smooth, value: currentPosition)
+                VStack {
+                    ZStack {
+                        
+                        Rectangle()
+                            .frame(maxWidth: .infinity, maxHeight: 12)
+                            .foregroundStyle(order.getSecondaryStatusColor())
+                            .opacity(0.5)
+                            .padding(.horizontal, 32)
+                            .animation(.default, value: currentPosition)
+                        
+                        HStack {
+                            ForEach(0..<5) { index in
+                                ZStack {
+                                    if index == currentPosition {
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .frame(width: 64, height: 64)
+                                            .foregroundStyle(order.getStatusColor())
+                                            .zIndex(0)
+                                            .animation(.smooth, value: currentPosition)
+                                        
+                                        Image("Status_\(index + 1)")
+                                            .resizable()
+                                            .frame(width: 40, height: 40)
+                                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                                            .zIndex(1)
+                                            .animation(.smooth, value: currentPosition)
+                                    } else {
+                                        Circle()
+                                            .frame(width: 42)
+                                            .foregroundStyle(order.getSecondaryStatusColor())
+                                            .zIndex(0)
+                                            .animation(.smooth, value: currentPosition)
+                                    }
                                 }
                             }
+                            .padding(.horizontal, 2)
+                            .frame(maxWidth: .infinity)
+                            
                         }
                     }
                 }
+                .padding(32)
             }
             
             HStack {

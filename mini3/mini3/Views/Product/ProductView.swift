@@ -131,19 +131,29 @@ struct ProductView: View {
                 }
             }
             
+            
             ToolbarItem(placement: .primaryAction) {
                 
                 HStack {
                     
+                    Spacer()
                     
                     Button() {
                         shouldPresentSheet.toggle()
                     } label: {
-                        Image(systemName: "square.and.pencil")
-                            .foregroundStyle(Color.brancoNeve)
-                            .font(.body)
-                            .fontWeight(.semibold)
-                            .padding(.trailing)
+                        VStack(alignment: .center) {
+                            Image(systemName: "square.and.pencil")
+                                .foregroundStyle(Color.brancoNeve)
+                                .font(.body)
+                                .fontWeight(.semibold)
+
+                            
+                            Text("Editar")
+                                .foregroundStyle(Color.brancoNeve)
+                                .font(.caption2)
+                                .fontWeight(.semibold)
+                        }
+
                     }
                     .sheet(isPresented: $shouldPresentSheet) {
                         print("Sheet dismissed!")
@@ -154,12 +164,21 @@ struct ProductView: View {
                     Button {
                         showAlert = true
                     } label: {
-                        Image(systemName: "trash.fill")
-                            .foregroundStyle(Color.brancoNeve)
-                            .font(.body)
-                            .fontWeight(.semibold)
+                        
+                        VStack{
+                            Image(systemName: "trash.fill")
+                                .foregroundStyle(Color.brancoNeve)
+                                .font(.body)
+                                .fontWeight(.semibold)
+                            
+                            Text("Excluir")
+                                .foregroundStyle(Color.brancoNeve)
+                                .font(.caption2)
+                                .fontWeight(.semibold)
+                        }
+
                     }
-                    .padding(.horizontal)
+                    .padding(.leading, 4)
                     .alert(isPresented: $showAlert) {
                         Alert(
                             title: Text("Confirmação"),
@@ -173,7 +192,7 @@ struct ProductView: View {
                     }
                     
                 }
-                .padding(.trailing, 8)
+//                .padding(.trailing, 8)
                 
             }
         }

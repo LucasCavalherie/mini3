@@ -81,6 +81,7 @@ struct OrderView: View {
                             .foregroundStyle(Color.principal)
                             .font(.callout)
                             .fontWeight(.bold)
+                            .padding(.horizontal)
                         
                         VStack {
                             OrderCustomerCardView(order: order)
@@ -143,7 +144,7 @@ struct OrderView: View {
                         
                             
                     }
-                    .padding(.vertical)
+                    .padding()
                     
                     
                     VStack {
@@ -215,10 +216,17 @@ struct OrderView: View {
                 Button() {
                     shouldPresentSheet.toggle()
                 } label: {
-                    Image(systemName: "square.and.pencil")
-                        .foregroundStyle(Color.amareloGema)
-                        .font(.title2)
-                        .fontWeight(.semibold)
+                    VStack {
+                        Image(systemName: "square.and.pencil")
+                            .foregroundStyle(Color.amareloGema)
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        Text("Editar")
+                            .foregroundStyle(Color.principal)
+                            .font(.caption2)
+                            .fontWeight(.semibold)
+                    }
                 }
                 .sheet(isPresented: $shouldPresentSheet) {
                     print("Sheet dismissed!")
