@@ -117,7 +117,7 @@ struct ProductView: View {
                 }
             }
         }
-        .background(Color.geleiaDeMorango.edgesIgnoringSafeArea(.top))
+        .background(product.getImageColor().edgesIgnoringSafeArea(.top))
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .navigation) {
@@ -139,11 +139,17 @@ struct ProductView: View {
                     Button() {
                         shouldPresentSheet.toggle()
                     } label: {
-                        Image(systemName: "square.and.pencil")
-                            .foregroundStyle(Color.brancoNeve)
-                            .font(.body)
-                            .fontWeight(.semibold)
-                            .padding(.trailing)
+                        VStack(alignment: .center) {
+                            Image(systemName: "square.and.pencil")
+                                .foregroundStyle(Color.brancoNeve)
+                                .font(.body)
+                                .fontWeight(.semibold)
+
+                            Text("Editar")
+                                .foregroundStyle(Color.brancoNeve)
+                                .font(.caption2)
+                                .fontWeight(.semibold)
+                        }
                     }
                     .sheet(isPresented: $shouldPresentSheet) {
                         print("Sheet dismissed!")
@@ -154,12 +160,19 @@ struct ProductView: View {
                     Button {
                         showAlert = true
                     } label: {
-                        Image(systemName: "trash.fill")
-                            .foregroundStyle(Color.brancoNeve)
-                            .font(.body)
-                            .fontWeight(.semibold)
+                        VStack {
+                            Image(systemName: "trash.fill")
+                                .foregroundStyle(Color.brancoNeve)
+                                .font(.body)
+                                .fontWeight(.semibold)
+                            Text("Excluir")
+                                .foregroundStyle(Color.brancoNeve)
+                                .font(.caption2)
+                                .fontWeight(.semibold)
+                        }
+                        
                     }
-                    .padding(.horizontal)
+                    .padding(.leading, 4)
                     .alert(isPresented: $showAlert) {
                         Alert(
                             title: Text("Confirmação"),
@@ -173,7 +186,6 @@ struct ProductView: View {
                     }
                     
                 }
-                .padding(.trailing, 8)
                 
             }
         }
@@ -181,5 +193,5 @@ struct ProductView: View {
 }
 
 #Preview {
-    ProductView(product: ProductModel(name: "Bolo", imageName: "IconeBrigadeiro", observation: "Observacao", priceBase: 10, createdAt: Date.now))
+    ProductView(product: ProductModel(name: "Bolo", imageName: "IconeBoloInteiro", observation: "Observacao", priceBase: 10, createdAt: Date.now))
 }

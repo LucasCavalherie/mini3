@@ -18,14 +18,14 @@ struct ProductCardAddView: View {
             Toggle(isOn: $value) {
                 HStack {
                     VStack {
-                        Image("Sacola")
+                        Image(product.imageName)
                             .resizable()
                             .scaledToFit()
                             .frame(height: 45)
                     }
                     .foregroundStyle(.background)
                     .padding(8)
-                    .background(Color.geleiaDeMorango)
+                    .background(product.getImageColor())
                     
                     Text(product.name)
                         .font(.headline)

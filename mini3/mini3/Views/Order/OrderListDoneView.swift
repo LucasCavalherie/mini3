@@ -77,6 +77,8 @@ struct OrderListDoneView: View {
                         }
                         .sheet(isPresented: $shouldPresentSheet) {
                             print("Sheet dismissed!")
+                            orders = viewModel.listAllOrders()
+                            applySort()
                         } content: {
                             OrderCreateEditView()
                         }

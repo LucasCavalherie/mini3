@@ -19,14 +19,14 @@ struct OrderItemCardAddView: View {
             Stepper(value: $quantity) {
                 HStack {
                     VStack {
-                        Image("Sacola")
+                        Image(viewModel.getProduct(id: orderItem.productId)?.imageName ?? "")
                             .resizable()
                             .scaledToFit()
                             .frame(height: 45)
                     }
                     .foregroundStyle(.background)
                     .padding(8)
-                    .background(Color.geleiaDeMorango)
+                    .background(viewModel.getProduct(id: orderItem.productId)?.getImageColor())
                     
                     Text(viewModel.getProduct(id: orderItem.productId)?.name ?? "")
                         .font(.footnote)

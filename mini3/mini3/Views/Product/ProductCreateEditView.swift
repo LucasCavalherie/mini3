@@ -57,7 +57,10 @@ struct ProductCreateEditView: View {
                                 .background(iconColors[index])
                                 .cornerRadius(12)
                                 .foregroundColor(selectedIcon == icon ? .blue : .black)
-                                .border(selectedIcon == icon ? Color.blue : Color.clear, width: 2)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(selectedIcon == icon ? Color.matchaLatte : Color.clear, lineWidth: 4)
+                                    )
                                 .onTapGesture {
                                     selectedIcon = icon
                                 }
@@ -79,7 +82,7 @@ struct ProductCreateEditView: View {
             
             Button {
                 if let product = product {
-                    var icon = selectedIcon == "" ? product.imageName : selectedIcon
+                    let icon = selectedIcon == "" ? product.imageName : selectedIcon
                     viewModel.editProduct(id: product.id, name: name, imageName: icon, observation: observation, priceBase: value ?? 0)
                 } else {
                     viewModel.addProduct(name: name, imageName: selectedIcon, observation: observation, priceBase: value ?? 0, createdAt: Date.now)
@@ -107,6 +110,9 @@ struct ProductCreateEditView: View {
                 observation = product.observation ?? ""
                 value = product.priceBase
             }
+        }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
 }

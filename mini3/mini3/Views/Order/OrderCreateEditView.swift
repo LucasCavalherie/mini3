@@ -150,6 +150,9 @@ struct OrderCreateEditView: View {
         .onDisappear{
             orderItemViewModel.orderItemModels = []
         }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
     }
 }
 
