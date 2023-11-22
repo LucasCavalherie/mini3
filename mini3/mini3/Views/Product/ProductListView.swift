@@ -57,6 +57,8 @@ struct ProductListView: View {
                         }
                         .sheet(isPresented: $shouldPresentSheet) {
                             print("Sheet dismissed!")
+                            products = viewModel.listProducts()
+                            applySort()
                         } content: {
                             ProductCreateEditView()
                         }
@@ -88,7 +90,7 @@ struct ProductListView: View {
                     VStack(spacing: 8){
                         
                         HStack {
-                            Text("Todas os produtos")
+                            Text("Todos os produtos")
                                 .foregroundStyle(Color("principal"))
                                 .font(.subheadline)
                                 .fontWeight(.semibold)

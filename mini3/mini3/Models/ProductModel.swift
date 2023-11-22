@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct ProductModel: Identifiable, Comparable, Codable {
     var id: UUID = UUID()
@@ -17,6 +18,20 @@ struct ProductModel: Identifiable, Comparable, Codable {
     
     static func < (lhs: ProductModel, rhs: ProductModel) -> Bool {
         return lhs.name < rhs.name
+    }
+    
+    func getImageColor() -> Color? {
+        switch imageName {
+            case "IconeBeijinho": return Color.limaoTahiti
+            case "IconeEstrela": return Color.boloDePedreiro
+            case "IconeCupcake": return Color.limonada
+            case "IconeCookie": return Color.picoleDeGroselha
+            case "IconeBolo": return Color.geleiaDeMorango
+            case "IconeBiscoito": return Color.verdeMatcha
+            case "IconeBoloInteiro": return Color.amareloGema
+            case "IconeBrigadeiro": return Color.musseDeMorango
+            default: return nil
+        }
     }
 }
 

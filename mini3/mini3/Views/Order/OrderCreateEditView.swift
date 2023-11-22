@@ -59,6 +59,9 @@ struct OrderCreateEditView: View {
             .scrollContentBackground(.hidden)
             .background(.algodaoDoce)
             .formStyle(.grouped)
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
             
             VStack (alignment: .leading) {
                 

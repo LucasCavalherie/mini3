@@ -20,7 +20,7 @@ struct ProductListCardView: View {
             }
             .foregroundStyle(.background)
             .padding(8)
-            .background(Color.geleiaDeMorango)
+            .background(product.getImageColor())
             
             VStack (alignment: .leading) {
                 Text(product.name)
@@ -43,5 +43,5 @@ struct ProductListCardView: View {
 }
 
 #Preview {
-    ProductListCardView(product: ProductModel(name: "Produto", imageName: "IconeBrigadeiro", observation: "Obs", priceBase: 10, createdAt: Date.now))
+    ProductListCardView(product: ProductModel(name: "Produto", imageName: "IconeBoloInteiro", observation: "Obs", priceBase: 10, createdAt: Date.now))
 }
