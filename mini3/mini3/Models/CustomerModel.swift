@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum ContactForm {
+enum ContactForm: Codable {
     case instagram
     case whatsapp
     case facebook
     case messages
 }
 
-struct CustomerModel: Identifiable {
+struct CustomerModel: Identifiable, Codable {
     var id: UUID = UUID()
     var name: String
     var contact: String
