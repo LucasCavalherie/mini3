@@ -77,8 +77,10 @@ struct ProductListView: View {
                         VStack {
                             Text("Uh-oh!")
                                 .font(.title)
-                            Text("Parece que você ainda não tem nenhum")
-                            Text("produto, que tal adicionar o primeiro?")
+                            Text("Parece que você ainda não tem nenhum produto, que tal adicionar o primeiro?")
+                                .padding(.horizontal, 32)
+                                .multilineTextAlignment(.center)
+                         
                         }
                         .font(.callout)
                         .fontWeight(.bold)
