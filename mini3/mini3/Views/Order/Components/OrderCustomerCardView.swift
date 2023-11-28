@@ -45,11 +45,6 @@ struct OrderCustomerCardView: View {
             
             Spacer()
             
-            Image(systemName: "phone.circle.fill")
-                .foregroundStyle(.background)
-                .padding(8)
-                .background(Color.limaoTahiti)
-                .clipShape(Circle())
             
         }
         .padding(.vertical, 12)

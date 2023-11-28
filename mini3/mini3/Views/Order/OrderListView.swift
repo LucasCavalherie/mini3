@@ -56,8 +56,10 @@ struct OrderListView: View {
                         VStack {
                             Text("Uh-oh!")
                                 .font(.title)
-                            Text("Parece que não tem nenhum pedido")
-                            Text("por aqui, que tal adicionar um novo?")
+
+                            Text("Parece que não tem nenhum pedido por aqui, que tal adicionar um novo?")
+                                .padding(.horizontal, 32)
+                                .multilineTextAlignment(.center)
                         }
                         .font(.callout)
                         .fontWeight(.bold)
