@@ -15,7 +15,7 @@ class MainViewModel: ObservableObject {
         loadVersionPro()
     }
     
-    let orderLimitFree = 2
+    let orderLimitFree = 20
     
     @Published var onboardingDone : Bool = false { didSet { saveOnboarding() } }
     @Published var versionPro : Bool = false { didSet { saveVersionPro() } }
