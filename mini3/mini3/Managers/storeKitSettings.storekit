@@ -11,7 +11,7 @@
       "localizations" : [
         {
           "description" : "Tenha acesso ilimitado de pedidos criados",
-          "displayName" : "Versão Pro",
+          "displayName" : "Pavê+",
           "locale" : "pt_BR"
         }
       ],
@@ -24,7 +24,7 @@
     "_applicationInternalID" : "6472110765",
     "_developerTeamID" : "4X6L65DYQU",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 722988851.34969401,
+    "_lastSynchronizedDate" : 722988977.89898002,
     "_locale" : "pt_BR",
     "_storefront" : "BRA",
     "_storeKitErrors" : [
