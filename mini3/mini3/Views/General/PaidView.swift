@@ -10,64 +10,158 @@ import SwiftUI
 import StoreKit
 
 struct PaidView: View {
-    @EnvironmentObject
-    private var purchaseManager: PurchaseManager
+    
+    @EnvironmentObject private var purchaseManager: PurchaseManager
+    
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(alignment: .leading) {
+            
+            Image("pavePlus")
+                .resizable()
+                .scaledToFill()
             
             Spacer()
             
-            VStack {
-                Text("Ah não!")
-                    .font(.title)
-
-                Text("Parece que você atingiu o seu limite de pedidos")
-                    .padding(.horizontal, 32)
-                    .multilineTextAlignment(.center)
-            }
-            .font(.callout)
-            .fontWeight(.bold)
-            .foregroundStyle(.picoleDeGroselha)
-            
-            Image("Pavinho_Triste")
-            
-            Text("Tenha acesso ilimitado ao Pavê com a Versão Pro")
-                .padding(.horizontal, 32)
-                .multilineTextAlignment(.center)
-                .font(.callout)
-                .fontWeight(.bold)
-                .foregroundStyle(.picoleDeGroselha)
-            
-            ForEach(purchaseManager.products) { product in
-                Text("Por apenas: \(product.displayPrice)")
-                    .padding(.horizontal, 32)
-                    .multilineTextAlignment(.center)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.picoleDeGroselha)
-                
-                Button {
-                    Task {
-                        do {
-                            try await purchaseManager.purchase(product)
-                        } catch {
-                            print(error)
-                        }
-                    }
-                } label: {
-                    Text("Compre agora")
-                        .foregroundColor(.brancoNeve)
-                        .fontWeight(.bold)
-                        .padding()
-                        .background(.picoleDeGroselha)
-                        .clipShape(Capsule())
+            VStack (alignment: .leading){
+                VStack (alignment: .leading) {
+                    Text("Adquira o Pavê+")
+                        .font(.title)
+                        .foregroundStyle(.principal)
+                        .fontWeight(.semibold)
+                        .padding(.vertical)
+                    
+                    Text("Parabéns por atingir 20 pedidos! Para continuar")
+                        .font(.subheadline)
+                        .foregroundStyle(.secundaria)
+                    Text("a sua jornada na confeitaria com pedidos")
+                        .font(.subheadline)
+                        .foregroundStyle(.secundaria)
+                    Text("ilimitados, adquira o Pavê+")
+                        .font(.subheadline)
+                        .foregroundStyle(.secundaria)
                 }
+                .padding(.vertical, 32)
+                
+                VStack (alignment: .leading) {
+                    Text("Benefícios do Pavê+")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.principal)
+                    
+                    HStack {
+                        VStack (alignment: .leading){
+                            HStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color.geleiaDeMorango)
+                                        .frame(width: 40, height: 40) // Ajuste o tamanho conforme necessário
+
+                                    Image(systemName: "list.number")
+                                        .font(.title2)
+                                        .foregroundColor(.brancoNeve)
+                                }
+                                
+                                Text("Pedidos ilimitados")
+                                    .font(.callout)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.secundaria)
+                            }
+                            
+                            HStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color.geleiaDeMorango)
+                                        .frame(width: 40, height: 40) // Ajuste o tamanho conforme necessário
+
+                                    Image(systemName: "dollarsign.circle")
+                                        .font(.title2)
+                                        .foregroundColor(.brancoNeve)
+                                }
+                                
+                                Text("Pague apenas uma vez")
+                                    .font(.callout)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.secundaria)
+                            }
+                            
+                            HStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color.geleiaDeMorango)
+                                        .frame(width: 40, height: 40) // Ajuste o tamanho conforme necessário
+
+                                    Image(systemName: "envelope")
+                                        .font(.title2)
+                                        .foregroundColor(.brancoNeve)
+                                }
+                                
+                                Text("Suporte prioritário")
+                                    .font(.callout)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.secundaria)
+                            }
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                    .background(.brancoNeve)
+                    .cornerRadius(12)
+                }
+                .padding(.bottom)
+                
+                
+                ForEach(purchaseManager.products) { product in
+                    Text("Pagamento Único - \(product.displayPrice)")
+                        .frame(maxWidth: .infinity)
+                        .font(.footnote)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.secundaria)
+                        .padding(.vertical, 8)
+                    
+                    Button {
+                        Task {
+                            do {
+                                try await purchaseManager.purchase(product)
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    } label: {
+                        Text("Comprar")
+                            .font(.title3)
+                            .foregroundColor(.brancoNeve)
+                            .fontWeight(.semibold)
+                            .padding()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(.verdeMatcha)
+                    .cornerRadius(12)
+                    
+                    Button {
+                        Task {
+                            do {
+                                try await AppStore.sync()
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    } label: {
+                        Text("Restaurar Comprar")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.verdeMatcha)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical)
+                }
+                
             }
+            .padding(.horizontal, 32)
             
             Spacer()
         }
-        .frame(maxWidth: .infinity)
         .background(.algodaoDoce)
         .task {
             Task {

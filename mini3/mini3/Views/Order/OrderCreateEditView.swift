@@ -22,26 +22,38 @@ struct OrderCreateEditView: View {
     @Environment(\.dismiss) private var dismiss
     
     @ObservedObject var viewModel: OrderViewModel = OrderViewModel.shared
+    @ObservedObject var mainViewModel: MainViewModel = MainViewModel.shared
     @ObservedObject var orderItemViewModel: OrderItemViewModel = OrderItemViewModel.shared
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Adicionar pedido")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.principal)
-                
-                Spacer()
-                
-                Button {
-                    dismiss()
-                } label: {
-                    CloseButtonView()
+            VStack {
+                HStack {
+                    Text("Adicionar pedido")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.principal)
+                    
+                    Spacer()
+                    
+                    Button {
+                        dismiss()
+                    } label: {
+                        CloseButtonView()
+                    }
+                }
+                if !mainViewModel.versionPro {
+                    HStack {
+                        Text("\(mainViewModel.orderLimitFree - viewModel.listAllOrders().count) pedidos gratis restantes")
+                            .foregroundStyle(.secundaria)
+                        
+                        Spacer()
+                    }
                 }
             }
             .padding(.top, 32)
             .padding(.horizontal, 32)
+            
             
             Form {
                 Section {
