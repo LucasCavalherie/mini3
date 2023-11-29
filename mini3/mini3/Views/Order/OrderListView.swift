@@ -12,6 +12,9 @@ struct OrderListView: View {
     @State var shouldPresentSheet = false
     
     @ObservedObject var viewModel: OrderViewModel = OrderViewModel.shared
+    @ObservedObject var mainViewModel: MainViewModel = MainViewModel.shared
+    
+    @StateObject private var purchaseManager = PurchaseManager()
     
     var body: some View {
         NavigationStack {
@@ -36,7 +39,15 @@ struct OrderListView: View {
                         .sheet(isPresented: $shouldPresentSheet) {
                             print("Sheet dismissed!")
                         } content: {
-                            OrderCreateEditView()
+                            if !mainViewModel.versionPro && viewModel.listAllOrders().count >= mainViewModel.orderLimitFree {
+                                PaidView()
+                                    .environmentObject(purchaseManager)
+                                    .task {
+                                        await purchaseManager.updatePurchasedProducts()
+                                    }
+                            } else {
+                                OrderCreateEditView()
+                            }
                         }
                         
                     }

@@ -17,6 +17,8 @@ enum OrderSort {
 struct OrderListDoneView: View {
     @State var shouldPresentSheet = false
     @ObservedObject var viewModel = OrderViewModel.shared
+    @ObservedObject var mainViewModel: MainViewModel = MainViewModel.shared
+    @StateObject private var purchaseManager = PurchaseManager()
     
     @State var sort : OrderSort = .nameAsc
     @State var filterStatus : OrderStatus? = nil
@@ -80,7 +82,15 @@ struct OrderListDoneView: View {
                             orders = viewModel.listAllOrders()
                             applySort()
                         } content: {
-                            OrderCreateEditView()
+                            if !mainViewModel.versionPro && viewModel.listAllOrders().count >= mainViewModel.orderLimitFree {
+                                PaidView()
+                                    .environmentObject(purchaseManager)
+                                    .task {
+                                        await purchaseManager.updatePurchasedProducts()
+                                    }
+                            } else {
+                                OrderCreateEditView()
+                            }
                         }
                         
                     }
