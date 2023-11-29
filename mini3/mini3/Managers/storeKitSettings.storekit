@@ -16,7 +16,7 @@
         }
       ],
       "productID" : "pave.pro.version",
-      "referenceName" : "Versão Pro",
+      "referenceName" : "Pavê+",
       "type" : "NonConsumable"
     }
   ],
@@ -24,7 +24,7 @@
     "_applicationInternalID" : "6472110765",
     "_developerTeamID" : "4X6L65DYQU",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 722988459.78937495,
+    "_lastSynchronizedDate" : 722988851.34969401,
     "_locale" : "pt_BR",
     "_storefront" : "BRA",
     "_storeKitErrors" : [
